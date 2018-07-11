@@ -8,22 +8,17 @@
 
 import UIKit
 
+struct myData {
+    var firstRowLabel: String
+    var secondRowLabel: String
+}
+var tableData: [myData] = []
 
 
 //https://peterwitham.com/swift-archives/intermediate/creating-and-using-ios-prototype-cells-with-swift/
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    
-    struct myData {
-        var firstRowLabel: String
-        var secondRowLabel: String
-    }
-    
-    
-    var tableData: [myData] = []
-
-    
     
     @IBOutlet weak var myTableView: UITableView!
     
@@ -52,11 +47,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    }
 //
 //    
-//    override func viewDidAppear(_ animated: Bool) {
-//        myTableView.reloadData()
-//    }
-//
-//
+    override func viewDidAppear(_ animated: Bool) {
+        myTableView.reloadData()
+        print("Reload ran")
+    }
+
     
     
     
@@ -66,11 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        tableData = [
-            myData(firstRowLabel: "The first row", secondRowLabel: "Hello"),
-            myData(firstRowLabel: "The second row", secondRowLabel: "There"),
-            myData(firstRowLabel: "Third and final row", secondRowLabel: "https://peterwitham.com")
-        ]
+
     }
 
     override func didReceiveMemoryWarning() {

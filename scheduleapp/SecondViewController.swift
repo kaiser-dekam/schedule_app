@@ -10,15 +10,25 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
-//    @IBOutlet weak var input: UITextField!
-//
-//    @IBAction func addItem(_ sender: Any) {
-//        if (input.text != "") {
-//            list.append(input.text!)
-//            input.text = ""
-//        }
-//    }
+    //Inputs
+    @IBOutlet weak var inputOne: UITextField!
+    @IBOutlet weak var inputTwo: UITextField!
     
+    
+    //Add to data
+    @IBAction func addItem(_ sender: Any) {
+        let inputSourceOne = inputOne.text
+        let inputSourceTwo = inputTwo.text
+        if (inputSourceOne != "" || inputSourceTwo != "") {
+            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!)
+            tableData.append(newItem)
+            print(tableData)
+            inputOne.text = ""
+            inputTwo.text = ""
+            
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
