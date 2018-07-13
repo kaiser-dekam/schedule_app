@@ -51,6 +51,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     override func viewDidAppear(_ animated: Bool) {
+        
         myTableView.reloadData()
         print("TableView was reloaded")
     }
@@ -59,12 +60,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
     }
 
     override func didReceiveMemoryWarning() {
