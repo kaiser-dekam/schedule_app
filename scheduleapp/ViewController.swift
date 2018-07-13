@@ -11,6 +11,7 @@ import UIKit
 struct myData {
     var firstRowLabel: String
     var secondRowLabel: String
+    var startTimeLabel: String
 }
 var tableData: [myData] = []
 
@@ -33,27 +34,28 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
         cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
-    
+        cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
+        tableView.separatorStyle = .none
         return cell
     }
     
-   //Ability to edit/delete
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-//    {
-//        if editingStyle == UITableViewCellEditingStyle.delete {
-//            list.remove(at: indexPath.row)
-//            myTableView.reloadData()
-//        }
-//    }
-//
-//    
-    override func viewDidAppear(_ animated: Bool) {
-        myTableView.reloadData()
-        print("Reload ran")
+    
+//   Ability to edit/delete
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            tableData.remove(at: indexPath.row)
+            myTableView.reloadData()
+        }
     }
 
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        myTableView.reloadData()
+        print("TableView was reloaded")
+    }
+
     
     
     
@@ -61,7 +63,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
     }
 
     override func didReceiveMemoryWarning() {

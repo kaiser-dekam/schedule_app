@@ -12,6 +12,8 @@ class MyViewCell: UITableViewCell {
 
     @IBOutlet weak var lblFirstRow: UILabel!
     @IBOutlet weak var lblSecondRow: UILabel!
+    @IBOutlet weak var lblStartTime: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
