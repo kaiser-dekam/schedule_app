@@ -12,6 +12,7 @@ struct myData {
     var firstRowLabel: String
     var secondRowLabel: String
     var startTimeLabel: String
+    var stopTimeLabel: String
 }
 var tableData: [myData] = []
 
@@ -35,19 +36,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
         cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
         cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
+//        UNCOMMENT TO ADD STOP TIME
+        cell.lblStopTime.text = tableData[indexPath.row].stopTimeLabel
         tableView.separatorStyle = .none
         return cell
     }
     
     
 //   Ability to edit/delete
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
-    {
-        if editingStyle == UITableViewCellEditingStyle.delete {
-            tableData.remove(at: indexPath.row)
-            myTableView.reloadData()
-        }
-    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+//    {
+//        if editingStyle == UITableViewCellEditingStyle.delete {
+//            tableData.remove(at: indexPath.row)
+//            myTableView.reloadData()
+//        }
+//    }
 
     
     override func viewDidAppear(_ animated: Bool) {

@@ -13,6 +13,7 @@ class MyViewCell: UITableViewCell {
     @IBOutlet weak var lblFirstRow: UILabel!
     @IBOutlet weak var lblSecondRow: UILabel!
     @IBOutlet weak var lblStartTime: UILabel!
+    @IBOutlet weak var lblStopTime: UILabel!
     
     
     override func awakeFromNib() {

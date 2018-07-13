@@ -15,7 +15,9 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var inputTwo: UITextField!
     
     
-    //TIME PICKER
+    //     =======================
+    //       TIME PICKER -> START
+    //     =======================
     @IBOutlet weak var timeInputStart: UITextField! //datePickerTF
     let timePicker = UIDatePicker()
 
@@ -23,7 +25,7 @@ class SecondViewController: UIViewController {
         //format the display of timepicker
         timePicker.datePickerMode = .time
         
-            //assign Date picker to our textfield
+        //assign Date picker to our textfield
         timeInputStart.inputView = timePicker
         
         // create a toolbar
@@ -49,18 +51,53 @@ class SecondViewController: UIViewController {
 
     }
     
+    //     =======================
+    //       TIME PICKER -> STOP
+    //     =======================
+    @IBOutlet weak var timeInputStop: UITextField!
+    let stopTimePicker = UIDatePicker()
+    
+    func createStopDatePicker() {
+        stopTimePicker.datePickerMode = .time
+        
+        timeInputStop.inputView = stopTimePicker
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneEditingButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneButtonClicked))
+        toolbar.setItems([doneEditingButton], animated: true)
+        timeInputStop.inputAccessoryView = toolbar
+    }
+    
+    @objc func doneButtonClicked() {
+        //formatting the time display
+        let stopTimeFormatter = DateFormatter()
+        stopTimeFormatter.timeStyle = .short
+        stopTimeFormatter.dateStyle = .none
+        timeInputStop.text = stopTimeFormatter.string(from: stopTimePicker.date)
+        
+        //End Picker window
+        self.view.endEditing(true)
+        print(timeInputStop.text!)
+    }
     
     
-    //Add to data
+    
+ 
+    
+//     =======================
+//          Adding data
+//     =======================
     @IBAction func addItem(_ sender: Any) {
         let inputSourceOne = inputOne.text
         let inputSourceTwo = inputTwo.text
         let inputTimeStart = timeInputStart.text
-//        let startTime =
-//        let stopTime =
+        let inputTimeStop = timeInputStop.text
         
-        if (inputSourceOne != "" || inputSourceTwo != "" || inputTimeStart != "") {
-            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!)
+        
+        if (inputSourceOne != "" || inputSourceTwo != "" || inputTimeStart != "" || inputTimeStop != "") {
+            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, stopTimeLabel: inputTimeStop!)
             tableData.append(newItem)
             print(tableData)
             inputOne.text = ""
@@ -72,6 +109,7 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         createDatePicker()
+        createStopDatePicker()
 
     }
     
