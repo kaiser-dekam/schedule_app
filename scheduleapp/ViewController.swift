@@ -12,6 +12,7 @@ struct myData {
     var firstRowLabel: String
     var secondRowLabel: String
     var startTimeLabel: String
+    var rawStartTime: Date
 }
 var tableData: [myData] = []
 
@@ -19,6 +20,7 @@ var tableData: [myData] = []
 //https://peterwitham.com/swift-archives/intermediate/creating-and-using-ios-prototype-cells-with-swift/
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+
 
     
     @IBOutlet weak var myTableView: UITableView!
@@ -28,10 +30,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return tableData.count
     }
 
+    
+//----------------------Assigning Content to Cell Elements---------------------
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
-        
         cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
         cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
         cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
@@ -56,7 +58,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         print("TableView was reloaded")
     }
 
-    
     
     
     

@@ -23,7 +23,7 @@ class SecondViewController: UIViewController {
         //format the display of timepicker
         timePicker.datePickerMode = .time
         
-            //assign Date picker to our textfield
+        //assign Date picker to our textfield
         timeInputStart.inputView = timePicker
         
         // create a toolbar
@@ -50,23 +50,43 @@ class SecondViewController: UIViewController {
     }
     
     
+    //----------Organizing Content In Order -----------------
     
-    //Add to data
+    func orderContent() {
+        
+        tableData = tableData.sorted(by: { $0.rawStartTime > $1.rawStartTime })
+        tableData = tableData.reversed()
+//        var tempArray: [myData] = []
+//        let largestTime = tableData.max {a, b in a.rawStartTime < b.rawStartTime}
+//        tempArray.append(largestTime!)
+       
+    }
+    
+    
+    
+    
+    //---------Add to data-----------------------------------
     @IBAction func addItem(_ sender: Any) {
         let inputSourceOne = inputOne.text
         let inputSourceTwo = inputTwo.text
         let inputTimeStart = timeInputStart.text
+
 //        let startTime =
 //        let stopTime =
         
         if (inputSourceOne != "" || inputSourceTwo != "" || inputTimeStart != "") {
-            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!)
+            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date)
+            
             tableData.append(newItem)
-            print(tableData)
+            if (tableData.count >= 2) {
+                orderContent()
+            }
+            print("Current Data is \(tableData)")
             inputOne.text = ""
             inputTwo.text = ""
         }
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
