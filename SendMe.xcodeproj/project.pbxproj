@@ -210,7 +210,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9B6816BD20F55C5E00A2153F /* Build configuration list for PBXProject "scheduleapp" */;
+			buildConfigurationList = 9B6816BD20F55C5E00A2153F /* Build configuration list for PBXProject "SendMe" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -551,7 +551,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9B6816BD20F55C5E00A2153F /* Build configuration list for PBXProject "scheduleapp" */ = {
+		9B6816BD20F55C5E00A2153F /* Build configuration list for PBXProject "SendMe" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9B6816E820F55C5E00A2153F /* Debug */,

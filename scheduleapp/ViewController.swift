@@ -40,6 +40,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
         cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
         tableView.separatorStyle = .none
+        
+        if tableData[indexPath.row].rawStartTime < Date() {
+//            cell.backgroundColor = UIColor(red: 214/255.0, green: 214/255.0, blue: 214/255.0, alpha: 1)
+        }
+        
         return cell
     }
     
@@ -53,9 +58,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    //------------------Highlighting cell when active--------------
+    
+
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
-        
         myTableView.reloadData()
         print("TableView was reloaded")
     }
@@ -66,6 +76,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
     }
 
     override func didReceiveMemoryWarning() {
