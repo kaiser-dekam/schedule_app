@@ -27,9 +27,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //How many rows in tableview
+        
         return tableData.count
     }
 
+    
     
 //----------------------Assigning Content to Cell Elements---------------------
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -42,7 +44,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-//   Ability to edit/delete
+//   Ability to delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == UITableViewCellEditingStyle.delete {
@@ -50,7 +52,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             myTableView.reloadData()
         }
     }
-
+    
     
     override func viewDidAppear(_ animated: Bool) {
         

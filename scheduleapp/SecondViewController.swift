@@ -14,6 +14,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var inputOne: UITextField!
     @IBOutlet weak var inputTwo: UITextField!
     
+    @IBOutlet weak var addedLabel: UILabel!
     
     //TIME PICKER
     @IBOutlet weak var timeInputStart: UITextField! //datePickerTF
@@ -53,14 +54,9 @@ class SecondViewController: UIViewController {
     //----------Organizing Content In Order -----------------
     
     func orderContent() {
-        
         tableData = tableData.sorted(by: { $0.rawStartTime > $1.rawStartTime })
         tableData = tableData.reversed()
-//        var tempArray: [myData] = []
-//        let largestTime = tableData.max {a, b in a.rawStartTime < b.rawStartTime}
-//        tempArray.append(largestTime!)
-       
-    }
+ }
     
     
     
@@ -71,10 +67,9 @@ class SecondViewController: UIViewController {
         let inputSourceTwo = inputTwo.text
         let inputTimeStart = timeInputStart.text
 
-//        let startTime =
-//        let stopTime =
+
         
-        if (inputSourceOne != "" || inputSourceTwo != "" || inputTimeStart != "") {
+        if (inputSourceOne != "" && inputTimeStart != "") {
             let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date)
             
             tableData.append(newItem)
@@ -84,6 +79,7 @@ class SecondViewController: UIViewController {
             print("Current Data is \(tableData)")
             inputOne.text = ""
             inputTwo.text = ""
+            timeInputStart.text = ""
         }
     }
 
@@ -92,7 +88,6 @@ class SecondViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         createDatePicker()
-
     }
     
     override func didReceiveMemoryWarning() {
