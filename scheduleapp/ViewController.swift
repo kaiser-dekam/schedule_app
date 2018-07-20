@@ -20,6 +20,8 @@ var tableData: [myData] = []
 //https://peterwitham.com/swift-archives/intermediate/creating-and-using-ios-prototype-cells-with-swift/
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    @IBOutlet weak var addButton: UIButton!
+    
 
 
     
@@ -34,7 +36,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
 //----------------------Assigning Content to Cell Elements---------------------
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
         cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
         cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
@@ -76,7 +78,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
+        self.view.bringSubview(toFront: addButton);
     }
 
     override func didReceiveMemoryWarning() {

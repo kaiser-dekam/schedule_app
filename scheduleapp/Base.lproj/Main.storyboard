@@ -23,8 +23,8 @@
                                 <rect key="frame" x="0.0" y="311" width="375" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AMQ-Wd-8bF">
-                                <rect key="frame" x="0.0" y="109" width="375" height="558"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="101" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AMQ-Wd-8bF">
+                                <rect key="frame" x="0.0" y="94" width="375" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="558" id="wdY-qm-CUJ"/>
@@ -85,7 +85,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zg3-ot-43I">
-                                <rect key="frame" x="16" y="23" width="41" height="30"/>
+                                <rect key="frame" x="8" y="20" width="41" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Home">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -94,15 +94,14 @@
                                     <segue destination="grb-Tk-OlK" kind="show" id="yoL-Xw-mpP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Schedule." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWu-kT-o2A">
-                                <rect key="frame" x="30" y="61" width="186" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Schedule." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kWu-kT-o2A">
+                                <rect key="frame" x="30" y="46" width="186" height="48"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPA-Fv-cQ0" customClass="addButton">
-                                <rect key="frame" x="318" y="25" width="41" height="26"/>
+                                <rect key="frame" x="0.0" y="602" width="375" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Add">
@@ -118,12 +117,16 @@
                             <constraint firstItem="AMQ-Wd-8bF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1fY-63-EfV"/>
                             <constraint firstItem="AMQ-Wd-8bF" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="1hk-7o-fzj"/>
                             <constraint firstItem="AMQ-Wd-8bF" firstAttribute="leading" secondItem="cyN-4t-QUc" secondAttribute="leading" id="61C-X6-UVW"/>
+                            <constraint firstItem="AMQ-Wd-8bF" firstAttribute="top" secondItem="kWu-kT-o2A" secondAttribute="bottom" id="Cfz-hE-avs"/>
+                            <constraint firstItem="kWu-kT-o2A" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="26" id="Im0-gI-ohP"/>
                             <constraint firstItem="AMQ-Wd-8bF" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="MKP-EE-CHl"/>
+                            <constraint firstItem="kWu-kT-o2A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="Ta5-6b-n5U"/>
                             <constraint firstItem="AMQ-Wd-8bF" firstAttribute="trailing" secondItem="cyN-4t-QUc" secondAttribute="trailing" id="rEz-k3-mVc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="addButton" destination="qPA-Fv-cQ0" id="zCB-Ks-s2T"/>
                         <outlet property="myTableView" destination="AMQ-Wd-8bF" id="AgP-t9-9tf"/>
                     </connections>
                 </viewController>
@@ -188,10 +191,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2P-Gp-DpX">
-                                <rect key="frame" x="297" y="614" width="78" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F2P-Gp-DpX">
+                                <rect key="frame" x="297" y="637" width="78" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="78" id="yeI-ja-10P"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="ADD">
                                     <color key="titleColor" red="0.015686274510000001" green="0.7843137255" blue="0.062745098040000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -201,10 +206,12 @@
                                     <action selector="addItem:" destination="j4l-A0-sbd" eventType="touchUpInside" id="jV6-Ca-P7I"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sou-NG-j7X">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sou-NG-j7X">
                                 <rect key="frame" x="0.0" y="626" width="64" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="r44-pn-xs4"/>
+                                </constraints>
                                 <state key="normal">
                                     <attributedString key="attributedTitle">
                                         <fragment content="BACK">
@@ -220,9 +227,8 @@
                                     <segue destination="BYZ-38-t0r" kind="showDetail" id="0f8-cC-xse"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIP-cX-mcs">
-                                <rect key="frame" x="148" y="614" width="78" height="53"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIP-cX-mcs">
+                                <rect key="frame" x="182" y="626" width="44" height="30"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="DEMO">
@@ -236,6 +242,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="F2P-Gp-DpX" firstAttribute="leading" secondItem="RIP-cX-mcs" secondAttribute="trailing" constant="71" id="CDe-bG-NA6"/>
+                            <constraint firstItem="ZWU-5o-TTH" firstAttribute="bottom" secondItem="RIP-cX-mcs" secondAttribute="bottom" constant="11" id="Jpc-py-r0w"/>
+                            <constraint firstAttribute="bottom" secondItem="RIP-cX-mcs" secondAttribute="bottom" constant="11" id="POM-bX-mgm"/>
+                            <constraint firstItem="RIP-cX-mcs" firstAttribute="bottom" secondItem="ZWU-5o-TTH" secondAttribute="bottom" constant="-11" id="QDz-VY-fKB"/>
+                            <constraint firstAttribute="trailing" secondItem="F2P-Gp-DpX" secondAttribute="trailing" id="YpD-n9-Y7s"/>
+                            <constraint firstItem="sou-NG-j7X" firstAttribute="leading" secondItem="1Rx-44-X2J" secondAttribute="leading" id="aBj-wK-N3I"/>
+                            <constraint firstItem="F2P-Gp-DpX" firstAttribute="bottom" secondItem="ZWU-5o-TTH" secondAttribute="bottom" id="gpK-Jf-PFu"/>
+                            <constraint firstItem="ZWU-5o-TTH" firstAttribute="bottom" secondItem="sou-NG-j7X" secondAttribute="bottom" constant="11" id="zeH-4m-4Tq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ZWU-5o-TTH"/>
                         <variation key="default">
                             <mask key="subviews">
@@ -271,12 +287,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ASf-1J-yHf">
-                                <rect key="frame" x="0.0" y="561" width="375" height="55"/>
+                                <rect key="frame" x="0.0" y="524" width="375" height="55"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                <state key="normal" title="Go To Schedule">
-                                    <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Schedule">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="BYZ-38-t0r" kind="popoverPresentation" popoverAnchorView="ASf-1J-yHf" id="29R-Qz-mU2">
