@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */; };
 		9B6816C620F55C5E00A2153F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816C520F55C5E00A2153F /* AppDelegate.swift */; };
 		9B6816C820F55C5E00A2153F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816C720F55C5E00A2153F /* ViewController.swift */; };
 		9B6816CB20F55C5E00A2153F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6816C920F55C5E00A2153F /* Main.storyboard */; };
@@ -16,7 +17,6 @@
 		9B6816E620F55C5E00A2153F /* scheduleappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816E520F55C5E00A2153F /* scheduleappUITests.swift */; };
 		9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816F520F561DA00A2153F /* SecondViewController.swift */; };
 		9B6816F820F5679E00A2153F /* MyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816F720F5679E00A2153F /* MyViewCell.swift */; };
-		9BC1DF0B21013C55000D9202 /* Add_Item_Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BC1DF0A21013C55000D9202 /* Add_Item_Button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SendMe.xcdatamodel; sourceTree = "<group>"; };
 		9B6816C220F55C5E00A2153F /* scheduleapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scheduleapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B6816C520F55C5E00A2153F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B6816C720F55C5E00A2153F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -52,7 +53,6 @@
 		9B6816E720F55C5E00A2153F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B6816F520F561DA00A2153F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9B6816F720F5679E00A2153F /* MyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewCell.swift; sourceTree = "<group>"; };
-		9BC1DF0A21013C55000D9202 /* Add_Item_Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Add_Item_Button.png; path = Images/assets/Add_Item_Button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,6 @@
 				9B6816D920F55C5E00A2153F /* scheduleappTests */,
 				9B6816E420F55C5E00A2153F /* scheduleappUITests */,
 				9B6816C320F55C5E00A2153F /* Products */,
-				9BC1DF0A21013C55000D9202 /* Add_Item_Button.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -105,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				9B6816C520F55C5E00A2153F /* AppDelegate.swift */,
+				9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */,
 				9B6816F520F561DA00A2153F /* SecondViewController.swift */,
 				9B6816C720F55C5E00A2153F /* ViewController.swift */,
 				9B6816C920F55C5E00A2153F /* Main.storyboard */,
@@ -238,7 +238,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BC1DF0B21013C55000D9202 /* Add_Item_Button.png in Resources */,
 				9B6816D020F55C5E00A2153F /* LaunchScreen.storyboard in Resources */,
 				9B6816CD20F55C5E00A2153F /* Assets.xcassets in Resources */,
 				9B6816CB20F55C5E00A2153F /* Main.storyboard in Resources */,
@@ -267,6 +266,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B6816F820F5679E00A2153F /* MyViewCell.swift in Sources */,
+				9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */,
 				9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */,
 				9B6816C820F55C5E00A2153F /* ViewController.swift in Sources */,
 				9B6816C620F55C5E00A2153F /* AppDelegate.swift in Sources */,
@@ -592,6 +592,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */,
+			);
+			currentVersion = 9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */;
+			path = SendMe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9B6816BA20F55C5E00A2153F /* Project object */;
 }
