@@ -13,6 +13,20 @@ class MyViewCell: UITableViewCell {
     @IBOutlet weak var lblFirstRow: UILabel!
     @IBOutlet weak var lblSecondRow: UILabel!
     @IBOutlet weak var lblStartTime: UILabel!
+    @IBOutlet weak var lblStopTime: UILabel!
+    @IBOutlet weak var statusImage: UIImageView!
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     override func awakeFromNib() {
@@ -22,8 +36,9 @@ class MyViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
+    
     }
-
+    
 }
+

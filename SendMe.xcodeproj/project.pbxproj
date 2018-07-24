@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */; };
+		9B386E4621067FF70049F307 /* greenStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B386E4521067FF70049F307 /* greenStatus.png */; };
 		9B6816C620F55C5E00A2153F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816C520F55C5E00A2153F /* AppDelegate.swift */; };
 		9B6816C820F55C5E00A2153F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816C720F55C5E00A2153F /* ViewController.swift */; };
 		9B6816CB20F55C5E00A2153F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6816C920F55C5E00A2153F /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 
 /* Begin PBXFileReference section */
 		9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SendMe.xcdatamodel; sourceTree = "<group>"; };
+		9B386E4521067FF70049F307 /* greenStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenStatus.png; path = Images/greenStatus.png; sourceTree = "<group>"; };
 		9B6816C220F55C5E00A2153F /* scheduleapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scheduleapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B6816C520F55C5E00A2153F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B6816C720F55C5E00A2153F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				9B6816D920F55C5E00A2153F /* scheduleappTests */,
 				9B6816E420F55C5E00A2153F /* scheduleappUITests */,
 				9B6816C320F55C5E00A2153F /* Products */,
+				9B386E4521067FF70049F307 /* greenStatus.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -241,6 +244,7 @@
 				9B6816D020F55C5E00A2153F /* LaunchScreen.storyboard in Resources */,
 				9B6816CD20F55C5E00A2153F /* Assets.xcassets in Resources */,
 				9B6816CB20F55C5E00A2153F /* Main.storyboard in Resources */,
+				9B386E4621067FF70049F307 /* greenStatus.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

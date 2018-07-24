@@ -13,27 +13,21 @@ struct myData {
     var secondRowLabel: String
     var startTimeLabel: String
     var rawStartTime: Date
+    var stopTimeLabel: String
+    var rawStopTime: Date
 }
 var tableData: [myData] = []
 
-
-//https://peterwitham.com/swift-archives/intermediate/creating-and-using-ios-prototype-cells-with-swift/
-
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var addButton: UIButton!
-    
-
-
-    
     @IBOutlet weak var myTableView: UITableView!
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //How many rows in tableview
-        
         return tableData.count
     }
 
-    
+  
     
 //----------------------Assigning Content to Cell Elements---------------------
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
@@ -41,14 +35,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
         cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
         cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
+        cell.lblStopTime.text = tableData[indexPath.row].stopTimeLabel
         tableView.separatorStyle = .none
-        
-        if tableData[indexPath.row].rawStartTime < Date() {
-//            cell.backgroundColor = UIColor(red: 214/255.0, green: 214/255.0, blue: 214/255.0, alpha: 1)
-        }
-        
         return cell
     }
+
+
+
     
     
 //   Ability to delete
@@ -61,15 +54,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     //------------------Highlighting cell when active--------------
-    
 
-    
-    
-    
-    
     override func viewDidAppear(_ animated: Bool) {
         myTableView.reloadData()
         print("TableView was reloaded")
+
     }
 
     
@@ -79,6 +68,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         self.view.bringSubview(toFront: addButton);
+        
     }
 
     override func didReceiveMemoryWarning() {
