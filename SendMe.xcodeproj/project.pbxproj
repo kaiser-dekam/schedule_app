@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */; };
 		9B386E4621067FF70049F307 /* greenStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B386E4521067FF70049F307 /* greenStatus.png */; };
+		9B42EF9F211E3FEC00165B37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */; };
 		9B6816C620F55C5E00A2153F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816C520F55C5E00A2153F /* AppDelegate.swift */; };
 		9B6816C820F55C5E00A2153F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816C720F55C5E00A2153F /* ViewController.swift */; };
 		9B6816CB20F55C5E00A2153F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6816C920F55C5E00A2153F /* Main.storyboard */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SendMe.xcdatamodel; sourceTree = "<group>"; };
 		9B386E4521067FF70049F307 /* greenStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenStatus.png; path = Images/greenStatus.png; sourceTree = "<group>"; };
+		9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9B6816C220F55C5E00A2153F /* scheduleapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = scheduleapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B6816C520F55C5E00A2153F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B6816C720F55C5E00A2153F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				9B6816F520F561DA00A2153F /* SecondViewController.swift */,
 				9B6816C720F55C5E00A2153F /* ViewController.swift */,
 				9B6816C920F55C5E00A2153F /* Main.storyboard */,
+				9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */,
 				9B6816F720F5679E00A2153F /* MyViewCell.swift */,
 				9B6816CC20F55C5E00A2153F /* Assets.xcassets */,
 				9B6816CE20F55C5E00A2153F /* LaunchScreen.storyboard */,
@@ -269,6 +272,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B42EF9F211E3FEC00165B37 /* LoginViewController.swift in Sources */,
 				9B6816F820F5679E00A2153F /* MyViewCell.swift in Sources */,
 				9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */,
 				9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */,

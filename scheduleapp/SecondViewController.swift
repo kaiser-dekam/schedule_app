@@ -23,7 +23,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     
     
-    
     //START TIME PICKER
     @IBOutlet weak var timeInputStart: UITextField! //datePickerTF
     let timePicker = UIDatePicker()
@@ -143,9 +142,9 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let inputTimeStop = timeInputStop.text
         
         
-        if (inputSourceOne != "" && inputTimeStart != "") {
-            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date)
-            
+        if (inputSourceOne != "" && inputTimeStart != "" && inputTimeStop != "") {
+
+            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, status: false)//status is false by default
             
             tableData.append(newItem)
             if (tableData.count >= 2) {
@@ -158,6 +157,10 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             timeInputStop.text = ""
             print(tableData)
         }
+        
+        
+        
+        
     }
 
     
@@ -188,8 +191,26 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         createDatePicker()
         createStopDatePicker()
         
-       
     }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

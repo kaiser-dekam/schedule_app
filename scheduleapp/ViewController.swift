@@ -15,12 +15,15 @@ struct myData {
     var rawStartTime: Date
     var stopTimeLabel: String
     var rawStopTime: Date
+    var status: Bool
 }
 var tableData: [myData] = []
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var myTableView: UITableView!
+    
+    @IBOutlet weak var refreshButton: UIButton!
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //How many rows in tableview
@@ -32,10 +35,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //----------------------Assigning Content to Cell Elements---------------------
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
-        cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
-        cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
-        cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
-        cell.lblStopTime.text = tableData[indexPath.row].stopTimeLabel
+        
+       
+            if tableData[indexPath.row].rawStopTime >= Date() {
+            cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
+            cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
+            cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
+            cell.lblStopTime.text = tableData[indexPath.row].stopTimeLabel
+            cell.cellViewLayer.layer.cornerRadius = 8
+            cell.cellViewLayer.layer.masksToBounds = true
+            } else {
+                tableData.remove(at: indexPath.row)
+            }
+        
         tableView.separatorStyle = .none
         return cell
     }
@@ -63,14 +75,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     
     
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        self.view.bringSubview(toFront: addButton);
         
     }
-
+    
+    @IBAction func refreshTableView(_ sender: Any) {
+        myTableView.reloadData()
+        print("TableView Reloaded")
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
