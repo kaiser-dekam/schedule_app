@@ -14,7 +14,6 @@ class MyViewCell: UITableViewCell {
     @IBOutlet weak var lblSecondRow: UILabel!
     @IBOutlet weak var lblStartTime: UILabel!
     @IBOutlet weak var lblStopTime: UILabel!
-    @IBOutlet weak var viewStatusLine: UIImageView!
     
     
     @IBOutlet weak var cellViewLayer: UIView!

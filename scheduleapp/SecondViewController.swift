@@ -20,6 +20,12 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var recentLocationReadOut: UILabel!
     
     
+    @IBOutlet var createView: UIView!
+    var titleEditingDidChange: Bool = false
+    @IBAction func titleChanged(_ sender: Any) {
+        createView.layer.backgroundColor = #colorLiteral(red: 1, green: 0.3921568627, blue: 0.4274509804, alpha: 1)
+    }
+    
     
     
     
@@ -155,6 +161,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             inputTwo.text = ""
             timeInputStart.text = ""
             timeInputStop.text = ""
+            createView.layer.backgroundColor = #colorLiteral(red: 0, green: 0.8134917422, blue: 0.05527941153, alpha: 1)
             print(tableData)
         }
         
@@ -190,6 +197,8 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Do any additional setup after loading the view, typically from a nib.
         createDatePicker()
         createStopDatePicker()
+        
+     
         
     }
         

@@ -30,13 +30,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return tableData.count
     }
 
-  
+
     
 //----------------------Assigning Content to Cell Elements---------------------
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
         
-       
+        
+        if removeOldEvents == true {
+            print("Remove old events is ON")
             if tableData[indexPath.row].rawStopTime >= Date() {
             cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
             cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
@@ -47,6 +49,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             } else {
                 tableData.remove(at: indexPath.row)
             }
+        } else {
+            print("Remove old events is OFF")
+            cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
+            cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
+            cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
+            cell.lblStopTime.text = tableData[indexPath.row].stopTimeLabel
+            cell.cellViewLayer.layer.cornerRadius = 8
+            cell.cellViewLayer.layer.masksToBounds = true
+        }
+        //if tableData[indexPath.row].rawStartTime <= Date() {
+            // }
+    
+    
         
         tableView.separatorStyle = .none
         return cell
