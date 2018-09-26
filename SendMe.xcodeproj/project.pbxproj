@@ -20,6 +20,7 @@
 		9B6816E620F55C5E00A2153F /* scheduleappUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816E520F55C5E00A2153F /* scheduleappUITests.swift */; };
 		9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816F520F561DA00A2153F /* SecondViewController.swift */; };
 		9B6816F820F5679E00A2153F /* MyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816F720F5679E00A2153F /* MyViewCell.swift */; };
+		9BB72BEF215986410068F857 /* MySpecialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB72BEE215986410068F857 /* MySpecialCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		9B6816E720F55C5E00A2153F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B6816F520F561DA00A2153F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9B6816F720F5679E00A2153F /* MyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewCell.swift; sourceTree = "<group>"; };
+		9BB72BEE215986410068F857 /* MySpecialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpecialCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				9B42EFA0211E9FA800165B37 /* SettingsViewController.swift */,
 				9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */,
 				9B6816F720F5679E00A2153F /* MyViewCell.swift */,
+				9BB72BEE215986410068F857 /* MySpecialCell.swift */,
 				9B6816CC20F55C5E00A2153F /* Assets.xcassets */,
 				9B6816CE20F55C5E00A2153F /* LaunchScreen.storyboard */,
 				9B6816D120F55C5E00A2153F /* Info.plist */,
@@ -280,6 +283,7 @@
 				9B42EFA1211E9FA800165B37 /* SettingsViewController.swift in Sources */,
 				9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */,
 				9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */,
+				9BB72BEF215986410068F857 /* MySpecialCell.swift in Sources */,
 				9B6816C820F55C5E00A2153F /* ViewController.swift in Sources */,
 				9B6816C620F55C5E00A2153F /* AppDelegate.swift in Sources */,
 			);

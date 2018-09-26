@@ -19,11 +19,16 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     @IBOutlet weak var recentLocationsPicker: UIPickerView!
     @IBOutlet weak var recentLocationReadOut: UILabel!
     
+    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    
+    
+    
     
     @IBOutlet var createView: UIView!
     var titleEditingDidChange: Bool = false
     @IBAction func titleChanged(_ sender: Any) {
-        createView.layer.backgroundColor = #colorLiteral(red: 1, green: 0.3921568627, blue: 0.4274509804, alpha: 1)
+//        createView.layer.backgroundColor = #colorLiteral(red: 1, green: 0.3921568627, blue: 0.4274509804, alpha: 1)
     }
     
     
@@ -48,8 +53,9 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(doneClicked))
         toolbar.setItems([doneButton], animated: true)
         timeInputStart.inputAccessoryView = toolbar
-        
         }
+    
+    
     @objc func doneClicked() {
         //format the date display in textfield
         let timeFormatter = DateFormatter()
@@ -136,7 +142,20 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         recentLocationReadOut.text = recentLocations[row]
         
     }
-    
+    //Switch Element to show/hide stop time also assign special status
+    var isSingleTimeEvent: Bool = false
+    @IBAction func specialStatusSwitch(_ sender: UISwitch) {
+        if sender.isOn == true {
+            isSingleTimeEvent = true
+            timeInputStop.isHidden = true
+            print("Switch is on")
+        } else if sender.isOn == false {
+            isSingleTimeEvent = false
+            timeInputStop.isHidden = false
+            print("Switch is off")
+        }
+        
+    }
     
  
     
@@ -148,11 +167,27 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let inputTimeStop = timeInputStop.text
         
         
-        if (inputSourceOne != "" && inputTimeStart != "" && inputTimeStop != "") {
-
-            let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, status: false)//status is false by default
+        
+        
+        
+        if (inputSourceOne != "" && inputTimeStart != "") {
+            print(isSingleTimeEvent)
+           
+            switch isSingleTimeEvent {
+            case true:
+                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true)
+                tableData.append(newItem)
+            case false:
+                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false)
+                tableData.append(newItem)
+            }
             
-            tableData.append(newItem)
+            
+            
+            
+            
+            
+            
             if (tableData.count >= 2) {
                 orderContent()
             }
@@ -161,7 +196,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             inputTwo.text = ""
             timeInputStart.text = ""
             timeInputStop.text = ""
-            createView.layer.backgroundColor = #colorLiteral(red: 0, green: 0.8134917422, blue: 0.05527941153, alpha: 1)
+//            createView.layer.backgroundColor = #colorLiteral(red: 0, green: 0.8134917422, blue: 0.05527941153, alpha: 1)
             print(tableData)
         }
         
@@ -172,24 +207,18 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     
     @IBAction func enterDemoData(_ sender: Any) {
-//        let demoTime = Date()
-//        var demoData: [myData]
-//        tableData = [myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: demoTime + 5000),
-//                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000),
-//                    myData(firstRowLabel: "Guys Arrive", secondRowLabel: "Hotel", startTimeLabel: "12:30 PM", rawStartTime: demoTime + 10000),
-//                    myData(firstRowLabel: "Guys Get Dressed", secondRowLabel: "Hotel", startTimeLabel: "1:30 PM", rawStartTime: demoTime + 13000),
-//                    myData(firstRowLabel: "Groomsmen Photos", secondRowLabel: "Woods", startTimeLabel: "2:30 PM", rawStartTime: demoTime + 14000),
-//                    myData(firstRowLabel: "Bridesmaids Photos", secondRowLabel: "Woods", startTimeLabel: "3:00 PM", rawStartTime: demoTime + 15000),
-//                    myData(firstRowLabel: "First Look", secondRowLabel: "Bridge", startTimeLabel: "3:30 PM", rawStartTime: demoTime + 16000),
-//                    myData(firstRowLabel: "Ceremony", secondRowLabel: "Grounds", startTimeLabel: "4:30 PM", rawStartTime: demoTime + 17000),
-//                    myData(firstRowLabel: "Reception", secondRowLabel: "Venue", startTimeLabel: "5:30 PM", rawStartTime: demoTime + 18000),
-//                    myData(firstRowLabel: "Speeches", secondRowLabel: "Venue", startTimeLabel: "6:30 PM", rawStartTime: demoTime + 19000),
-//                    myData(firstRowLabel: "Send Off", secondRowLabel: "Venue", startTimeLabel: "10:30 PM", rawStartTime: demoTime + 23000),
-//                    myData(firstRowLabel: "Dancing", secondRowLabel: "Venue", startTimeLabel: "8:30 PM", rawStartTime: demoTime + 20000),]
-//        orderContent()
+        let demoTime = Date()
+        var demoData: [myData]
+        tableData = [myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 8000, isSpecialStatus: false),
+                     myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 10000, isSpecialStatus: true),
+                    myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 11000, isSpecialStatus: false),
+                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 12000, isSpecialStatus: false)
+                    ]
+        orderContent()
         }
 
-
+    
+    
     
 
     override func viewDidLoad() {
@@ -198,28 +227,8 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         createDatePicker()
         createStopDatePicker()
         
-     
         
     }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
