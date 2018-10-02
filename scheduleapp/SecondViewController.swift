@@ -21,9 +21,11 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var recentButton: UIButton!
     
-    
-    
+    //Variables
+    var recentLocationsIndex = 0
+
     
     @IBOutlet var createView: UIView!
     var titleEditingDidChange: Bool = false
@@ -120,12 +122,21 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             print("Already available in recent locations")
         } else {
             recentLocations.append(location)
-            print("Added to recent locations. Recent locations now include = \(recentLocations)")
+            print("------------ Added to recent locations. Recent locations now include = \(recentLocations)")
+        }
+    }
+    
+
+    @IBAction func nextRecentLocation(_ sender: Any) {
+        print("The recent locations INDEX is ....\(recentLocationsIndex)")
+        inputTwo.text = recentLocations[recentLocationsIndex]
+        recentLocationsIndex = recentLocationsIndex + 1
+        if recentLocationsIndex >= recentLocations.count || recentLocationsIndex <= 10 {
+            recentLocationsIndex = 0
         }
     }
     
     
-    var recentLocations: [String] = []
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -142,6 +153,14 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         recentLocationReadOut.text = recentLocations[row]
         
     }
+    
+    
+    
+    
+    
+    
+    
+    
     //Switch Element to show/hide stop time also assign special status
     var isSingleTimeEvent: Bool = false
     @IBAction func specialStatusSwitch(_ sender: UISwitch) {
@@ -157,7 +176,18 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
     
- 
+    // Switch controlling whether an event time is locked
+    var eventLockStatus: Bool = false
+    @IBAction func lockEventValueChanged(_ sender: UISwitch) {
+        if sender.isOn == true {
+            eventLockStatus = true
+            print("Event is locked")
+        } else if sender.isOn == false {
+            eventLockStatus = false
+            print("Event is not locked")
+        }
+    }
+    
     
     //---------Add to data-----------------------------------
     @IBAction func addItem(_ sender: Any) {
@@ -168,23 +198,17 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
         
         
-        
-        
         if (inputSourceOne != "" && inputTimeStart != "") {
             print(isSingleTimeEvent)
            
             switch isSingleTimeEvent {
             case true:
-                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true)
+                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true, isEventTimeLocked: eventLockStatus)
                 tableData.append(newItem)
             case false:
-                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false)
+                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false, isEventTimeLocked: eventLockStatus)
                 tableData.append(newItem)
             }
-            
-            
-            
-            
             
             
             
@@ -208,11 +232,11 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     @IBAction func enterDemoData(_ sender: Any) {
         let demoTime = Date()
-        var demoData: [myData]
-        tableData = [myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 8000, isSpecialStatus: false),
-                     myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 10000, isSpecialStatus: true),
-                    myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 11000, isSpecialStatus: false),
-                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 12000, isSpecialStatus: false)
+        let demoData: [myData]
+        tableData = [myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 8000, isSpecialStatus: false, isEventTimeLocked: false),
+                     myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 10000, isSpecialStatus: true, isEventTimeLocked: false),
+                    myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 11000, isSpecialStatus: false, isEventTimeLocked: false),
+                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 12000, isSpecialStatus: false, isEventTimeLocked: false)
                     ]
         orderContent()
         }
