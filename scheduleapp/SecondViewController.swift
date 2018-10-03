@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 var recentLocations: [String] = []
 class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -26,6 +27,12 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     //Variables
     var recentLocationsIndex = 0
 
+    
+    
+    
+    
+    
+    
     
     @IBOutlet var createView: UIView!
     var titleEditingDidChange: Bool = false
@@ -205,6 +212,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             case true:
                 let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true, isEventTimeLocked: eventLockStatus)
                 tableData.append(newItem)
+                
             case false:
                 let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false, isEventTimeLocked: eventLockStatus)
                 tableData.append(newItem)
@@ -236,7 +244,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         tableData = [myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 8000, isSpecialStatus: false, isEventTimeLocked: false),
                      myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 10000, isSpecialStatus: true, isEventTimeLocked: false),
                     myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 11000, isSpecialStatus: false, isEventTimeLocked: false),
-                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 12000, isSpecialStatus: false, isEventTimeLocked: false)
+                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00 PM", rawStopTime: demoTime + 12000, isSpecialStatus: false, isEventTimeLocked: false)
                     ]
         orderContent()
         }

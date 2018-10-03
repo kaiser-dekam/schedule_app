@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>802813923545-iu467c2394cr2rm5f5rpo8llu8sq8bgm.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.802813923545-iu467c2394cr2rm5f5rpo8llu8sq8bgm</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC6ClhuN4PLK5NN-lMfU3QmircVIMJ7fz4</string>
+	<key>GCM_SENDER_ID</key>
+	<string>802813923545</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kaiserdekam.scheduleapp</string>
+	<key>PROJECT_ID</key>
+	<string>scheduleapp-dd7ea</string>
+	<key>STORAGE_BUCKET</key>
+	<string>scheduleapp-dd7ea.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:802813923545:ios:c53588d1d883d208</string>
+	<key>DATABASE_URL</key>
+	<string>https://scheduleapp-dd7ea.firebaseio.com</string>
+</dict>
+</plist>

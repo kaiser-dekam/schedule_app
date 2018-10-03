@@ -17,7 +17,6 @@ struct myData {
     var rawStopTime: Date
     var isSpecialStatus: Bool
     var isEventTimeLocked: Bool
-    
 }
 var tableData: [myData] = []
 
