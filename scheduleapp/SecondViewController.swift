@@ -203,7 +203,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let inputTimeStart = timeInputStart.text
         let inputTimeStop = timeInputStop.text
         
-        
+        //Test comments
         
         if (inputSourceOne != "" && inputTimeStart != "") {
             print(isSingleTimeEvent)
