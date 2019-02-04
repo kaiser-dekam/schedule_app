@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 var recentLocations: [String] = []
 class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
@@ -196,7 +197,8 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let inputTimeStart = timeInputStart.text
         let inputTimeStop = timeInputStop.text
         
-        
+        //Example for converting time data in timeFormatter Playground
+    
         
         if (inputSourceOne != "" && inputTimeStart != "") {
             print(isSingleTimeEvent)
