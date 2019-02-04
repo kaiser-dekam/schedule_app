@@ -24,6 +24,7 @@ var tableData: [myData] = []
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTableView: UITableView!
     
+
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //How many rows in tableview
@@ -31,7 +32,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.alpha = 0
-        
         UIView.animate(
             withDuration: 0.5,
             delay: 0.25 * Double(indexPath.row),
@@ -139,6 +139,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
+
     
     
     
@@ -148,7 +149,6 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background_image.png"))
     }
     
     @IBAction func refreshTableView(_ sender: Any) {

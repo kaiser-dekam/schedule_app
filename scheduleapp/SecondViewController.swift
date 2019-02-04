@@ -210,8 +210,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                 tableData.append(newItem)
             }
             
-            
-            
             if (tableData.count >= 2) {
                 orderContent()
             }
@@ -220,7 +218,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             inputTwo.text = ""
             timeInputStart.text = ""
             timeInputStop.text = ""
-//            createView.layer.backgroundColor = #colorLiteral(red: 0, green: 0.8134917422, blue: 0.05527941153, alpha: 1)
             print(tableData)
         }
         
@@ -249,9 +246,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         createDatePicker()
-        createStopDatePicker()
-        
-        
+        createStopDatePicker() 
     }
     
     override func didReceiveMemoryWarning() {
