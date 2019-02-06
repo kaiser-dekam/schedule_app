@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 struct myData {
     var firstRowLabel: String
@@ -18,10 +19,22 @@ struct myData {
     var isSpecialStatus: Bool
     var isEventTimeLocked: Bool
 }
+var userID: String?
 var tableData: [myData] = []
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTableView: UITableView!
+    
+    //Download data from FIREBASE
+    
+    
+    
+    
+    
+    
+    
+    //Save Data to tableData via myData
+    
     
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,7 +51,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 cell.alpha = 1
         })
     }
-        
+    
+    
 //----------------------Assigning Content to Cell Elements---------------------
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -138,7 +152,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     
-    
+    func getUserId() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            let userEmail = user.email
+            print("User ID Received")
+        }
+        userID = user?.uid
+    }
     
     
     
@@ -147,9 +169,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-//         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background_image.png"))
+        getUserId()
     }
-    
+
     @IBAction func refreshTableView(_ sender: Any) {
         myTableView.reloadData()
         print("TableView Reloaded")

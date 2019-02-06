@@ -9,7 +9,7 @@ target 'scheduleapp' do
 
 pod 'Firebase/Core'
 pod 'Firebase/Database'
-
+pod 'Firebase/Auth'
 
 
   target 'scheduleappTests' do

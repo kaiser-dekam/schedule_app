@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 
 class LoginViewController: UIViewController {
 
@@ -14,21 +16,57 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var entryPassword: UITextField!
     @IBOutlet weak var entryEmail: UITextField!
+    @IBOutlet weak var signInSelector: UISegmentedControl!
+    @IBOutlet weak var signInLabel: UILabel!
     
-    
-    @IBAction func passwordStarted(_ sender: Any) {
-        //Method from Enter Button
-         print("textField: \(entryPassword.text!)")
+    var isSignIn: Bool = true
+
+    //Register vs Login Selector
+    @IBAction func signInSelectorChanged(_ sender: Any) {
+        // Flip the boolean
+        isSignIn = !isSignIn
         
-        if (entryPassword.text?.count)! <= 3 {
-            loginButton.isHidden = true
-            print("Background color changed?")
-        }  else {
-            loginButton.isHidden = false
+        if isSignIn {
+            signInLabel.text = "Sign In"
+            loginButton.setTitle("Sign In", for: .normal)
+        } else {
+            signInLabel.text = "Register"
+            loginButton.setTitle("Register", for: .normal)
         }
-        
-        
     }
+    @IBAction func submitRegister(_ sender: Any) {
+        if let email = entryEmail.text, let pass = entryPassword.text {
+        
+        
+        if isSignIn {
+            // Sign in the user with firebase
+            Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
+                if let u = user {
+                    // User is found go to home screen
+                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                } else {
+                    // Error, check error and show message
+                }
+            }
+           
+        } else {
+            // Register user with firebase
+            Auth.auth().createUser(withEmail: email, password: pass) { (user, error) in
+                if let u = user {
+                    // User is found, go to home screen
+                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                } else {
+                    // Error, check error and show message
+
+                }
+            }
+        }
+    
+    }
+    
+       
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.

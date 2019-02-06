@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3C98BD23ABF2D5B7C02735BB1E0F13AC"
+               BlueprintIdentifier = "6D9F729DD14800C410BB1CCAC19DE38F"
                BuildableName = "Pods_scheduleapp.framework"
                BlueprintName = "Pods-scheduleapp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3C98BD23ABF2D5B7C02735BB1E0F13AC"
+            BlueprintIdentifier = "6D9F729DD14800C410BB1CCAC19DE38F"
             BuildableName = "Pods_scheduleapp.framework"
             BlueprintName = "Pods-scheduleapp"
             ReferencedContainer = "container:Pods.xcodeproj">

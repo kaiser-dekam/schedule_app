@@ -7,10 +7,13 @@
 //
 
 import UIKit
-
+import Firebase
 
 var recentLocations: [String] = []
 class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    //Firebase
+    var ref: DatabaseReference!
     
     //Inputs
     @IBOutlet weak var inputOne: UITextField!
@@ -26,24 +29,17 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     //Variables
     var recentLocationsIndex = 0
+    var startTimeInt: Int = 0
+    var stopTimeInt: Int = 0
+   
+    var startTimeDateConverted: Date?
+    var stopTimeDateConverted: Date?
+//---------------------------------------------------------------------
 
     
     
     
-    
-    
-    
-    
-    @IBOutlet var createView: UIView!
-    var titleEditingDidChange: Bool = false
-    @IBAction func titleChanged(_ sender: Any) {
-//        createView.layer.backgroundColor = #colorLiteral(red: 1, green: 0.3921568627, blue: 0.4274509804, alpha: 1)
-    }
-    
-    
-    
-    
-    //START TIME PICKER
+//-----------------------START TIME PICKER ------------------------
     @IBOutlet weak var timeInputStart: UITextField! //datePickerTF
     let timePicker = UIDatePicker()
 
@@ -70,6 +66,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let timeFormatter = DateFormatter()
         timeFormatter.timeStyle = .short
         timeFormatter.dateStyle = .none
+        startTimeInt = convertTimeToInt(time: timePicker.date)
         timeInputStart.text = timeFormatter.string(from: timePicker.date)
 
         //End Picker window
@@ -105,25 +102,20 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let stopTimeFormatter = DateFormatter()
         stopTimeFormatter.timeStyle = .short
         stopTimeFormatter.dateStyle = .none
+        stopTimeInt = convertTimeToInt(time: stopTimePicker.date)
         timeInputStop.text = stopTimeFormatter.string(from: stopTimePicker.date)
-        
+
         //End Picker window
         self.view.endEditing(true)
 
     }
     
-    
-
-    
     //----------Organizing Content In Order -----------------
-    
     func orderContent() {
         tableData = tableData.sorted(by: { $0.rawStartTime > $1.rawStartTime })
         tableData = tableData.reversed()
  }
-    
     //----------Add locations to recently used list----------
-
     func addToRecentLocations(location:String) {
         if recentLocations.contains(location) {
             print("Already available in recent locations")
@@ -164,10 +156,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     
     
     
-    
-    
-    
-    
     //Switch Element to show/hide stop time also assign special status
     var isSingleTimeEvent: Bool = false
     @IBAction func specialStatusSwitch(_ sender: UISwitch) {
@@ -202,20 +190,37 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let inputSourceTwo = inputTwo.text
         let inputTimeStart = timeInputStart.text
         let inputTimeStop = timeInputStop.text
-        
-        //Test comments
-        
         if (inputSourceOne != "" && inputTimeStart != "") {
             print(isSingleTimeEvent)
            
             switch isSingleTimeEvent {
             case true:
+            //Add Item to Local dictionary/struct
                 let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true, isEventTimeLocked: eventLockStatus)
                 tableData.append(newItem)
+            //Add Items to FIREBASE
+
+                let data = ["Title": inputSourceOne!,
+                            "location": inputSourceTwo!,
+                            "start_time":startTimeInt,
+                            "stop_time":stopTimeInt,
+                            "special_status": true
+                    ] as [String : Any]
+                self.ref.child(userID!).child("Event Data").childByAutoId().setValue(data)
+
                 
             case false:
+            //Add Item to Local dictionary/struct
                 let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false, isEventTimeLocked: eventLockStatus)
                 tableData.append(newItem)
+            //Add Item to FIREBASE
+                let data = ["Title": inputSourceOne!,
+                            "location": inputSourceTwo!,
+                            "start_time":startTimeInt,
+                            "stop_time":stopTimeInt,
+                            "special_status": false
+                    ] as [String : Any]
+                self.ref.child(userID!).child("Event Data").childByAutoId().setValue(data)
             }
             
             
@@ -228,7 +233,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             inputTwo.text = ""
             timeInputStart.text = ""
             timeInputStop.text = ""
-//            createView.layer.backgroundColor = #colorLiteral(red: 0, green: 0.8134917422, blue: 0.05527941153, alpha: 1)
             print(tableData)
         }
         
@@ -237,19 +241,22 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         
     }
 
-    
-    @IBAction func enterDemoData(_ sender: Any) {
-        let demoTime = Date()
-        let demoData: [myData]
-        tableData = [myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 8000, isSpecialStatus: false, isEventTimeLocked: false),
-                     myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00PM", rawStopTime: demoTime + 10000, isSpecialStatus: true, isEventTimeLocked: false),
-                    myData(firstRowLabel: "Getting Ready", secondRowLabel: "Home", startTimeLabel: "10:30 AM", rawStartTime: demoTime, stopTimeLabel: "11:00 AM", rawStopTime: demoTime + 11000, isSpecialStatus: false, isEventTimeLocked: false),
-                    myData(firstRowLabel: "Bride Get's Dressed", secondRowLabel: "Home", startTimeLabel: "11:30 AM", rawStartTime: demoTime + 5000, stopTimeLabel: "12:00 PM", rawStopTime: demoTime + 12000, isSpecialStatus: false, isEventTimeLocked: false)
-                    ]
-        orderContent()
-        }
 
+//---------CONVERT TIME PICKER TO INT--------------------------------
+    func convertTimeToInt(time: Date)-> Int {
+        let timeInterval = time.timeIntervalSince1970
+        let myInt = Int(timeInterval)
+        print("Time has been converted from \(time) to \(myInt)")
+        return myInt
+    }
     
+//---------CONVERT INT to DATE --------------------------------
+    func convertIntegerToDate(timeInt: Int) -> Date {
+        let timeIntervalReturn = Double(timeInt)
+        let myConvertedDate = Date(timeIntervalSince1970: timeIntervalReturn)
+        print("Time integer has been converted from \(timeInt) to \(myConvertedDate)")
+        return myConvertedDate
+    }
     
     
 
@@ -258,6 +265,8 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         // Do any additional setup after loading the view, typically from a nib.
         createDatePicker()
         createStopDatePicker()
+
+        ref = Database.database().reference()
         
         
     }
