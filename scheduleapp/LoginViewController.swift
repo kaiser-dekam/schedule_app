@@ -20,7 +20,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var signInLabel: UILabel!
     
     var isSignIn: Bool = true
-
+    var shareCode: String = ""
+    
     //Register vs Login Selector
     @IBAction func signInSelectorChanged(_ sender: Any) {
         // Flip the boolean
@@ -28,10 +29,10 @@ class LoginViewController: UIViewController {
         
         if isSignIn {
             signInLabel.text = "Sign In"
-            loginButton.setTitle("Sign In", for: .normal)
+            loginButton.setTitle("SIGN IN", for: .normal)
         } else {
             signInLabel.text = "Register"
-            loginButton.setTitle("Register", for: .normal)
+            loginButton.setTitle("REGISTER", for: .normal)
         }
     }
     @IBAction func submitRegister(_ sender: Any) {

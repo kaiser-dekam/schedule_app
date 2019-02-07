@@ -124,10 +124,13 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     @IBAction func nextRecentLocation(_ sender: Any) {
         print("The recent locations INDEX is ....\(recentLocationsIndex)")
+        if recentLocationsIndex == 0 {
+        } else {
         inputTwo.text = recentLocations[recentLocationsIndex]
-        recentLocationsIndex = recentLocationsIndex + 1
         if recentLocationsIndex >= recentLocations.count || recentLocationsIndex <= 10 {
             recentLocationsIndex = 0
+            }
+
         }
     }
     
@@ -231,6 +234,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             
            
             addToRecentLocations(location: inputSourceTwo!)
+            recentLocationsIndex = recentLocationsIndex + 1
             inputOne.text = ""
             inputTwo.text = ""
             timeInputStart.text = ""
