@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 struct myData {
     var firstRowLabel: String
@@ -17,23 +18,23 @@ struct myData {
     var stopTimeLabel: String
     var rawStopTime: Date
     var isSpecialStatus: Bool
-    var isEventTimeLocked: Bool
+    var uniqueID: String
+    
 }
 var userID: String?
 var tableData: [myData] = []
+var ref: DatabaseReference!
+
+
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTableView: UITableView!
     
-    //Download data from FIREBASE
-    
-    
-    
-    
-    
-    
-    
-    //Save Data to tableData via myData
+    //----------Organizing Content In Order -----------------
+    func orderContent() {
+        tableData = tableData.sorted(by: { $0.rawStartTime > $1.rawStartTime })
+        tableData = tableData.reversed()
+    }
     
     
     
@@ -45,8 +46,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.alpha = 0
         
         UIView.animate(
-            withDuration: 0.5,
-            delay: 0.25 * Double(indexPath.row),
+            withDuration: 0.3,
+            delay: 0.15 * Double(indexPath.row),
             animations: {
                 cell.alpha = 1
         })
@@ -56,7 +57,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //----------------------Assigning Content to Cell Elements---------------------
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
+            if (tableData.count >= 2) {
+                orderContent()
+            }
         switch tableData[indexPath.row].isSpecialStatus {
         case false:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
@@ -86,9 +89,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            tableData.remove(at: indexPath.row)
-            myTableView.reloadData()
-        }    
+            let eventIDForDelete: String = tableData[indexPath.row].uniqueID
+            print("Unique ID for deletion \(eventIDForDelete)")
+            ref!.child(userID!).child("Events").child(eventIDForDelete).removeValue()
+            tableData.removeAll()
+            downloadFirebaseData()
+            tableView.reloadData()
+            
+        }    //
     }
     
 
@@ -104,17 +112,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Change Swipe to delete background color and text
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deletebutton = UITableViewRowAction(style: .default, title: "Delete") {
+            
             (action, indexPath) in tableView.dataSource?.tableView!(tableView, commit: .delete, forRowAt: indexPath)
-        return
-    }
+            
+            
+            
+            
+            return
+        }
+        
+  
+        
+        
         let swipeColor = UIColor.init(red: 109/255, green: 109/255, blue: 109/255, alpha: 1.0)
         deletebutton.backgroundColor = swipeColor
         deletebutton.title = "Remove"
+        
         return [deletebutton]
     }
     
-    
-    
+ 
     //Format Time Data for Delaying
     func timeFormatterFunction(date:Date) -> String {
         let newString: String
@@ -129,47 +146,88 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Delay button will delay *all* upcoming events by 15 minutes.
     //This needs to be adjustable. Provide an option to the user to choose how long to delay
     
-    @IBAction func delayFutureEvents(_ sender: Any) {
-       var index = 0
-        while index < tableData.count {
-            if tableData[index].isEventTimeLocked == true {
-                print("LOCKED: The item \(tableData[0].isEventTimeLocked) cannot be delayed.")
-            } else {
-                var newStartTime:Date
-                newStartTime = tableData[index].rawStartTime + 12000
-                var newStopTime: Date
-                newStopTime = tableData[index].rawStopTime + 12000
-                tableData[index].startTimeLabel = timeFormatterFunction(date: newStartTime )
-                tableData[index].stopTimeLabel = timeFormatterFunction(date: newStopTime)
-                print(newStartTime)
-                print(newStopTime)
-                print("UNLOCKED: The item \(tableData[0].isEventTimeLocked) was delayed.")
-            }
-            index+=1
-            myTableView.reloadData()
-        }
-        index = 0
-    }
-    
+
     
     func getUserId() {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
-            let userEmail = user.email
             print("User ID Received")
         }
         userID = user?.uid
     }
     
+    func downloadFirebaseData() {
+        ref.child(userID!).child("Events").observeSingleEvent(of: .value) { (snapshot) in
+            
+           
+            // Get User Value
+            if snapshot.childrenCount > 0 {
+                tableData.removeAll()
+                
+                for events in snapshot.children.allObjects as![DataSnapshot]{
+                    let eventObject = events.value as? [String: AnyObject]
+                    let title = eventObject?["Title"] //Need to change to lowercase
+                    let location = eventObject?["location"]
+                    let special = eventObject?["special_status"]
+                    let startTimeData = eventObject?["start_time"]
+                    let stopTimeData = eventObject?["stop_time"]
+                    let uniqueEventID = eventObject?["uniqueID"]
+                    
+                    
+                    func convertIntegerToDate(timeInt: Int) -> Date {
+                        let timeIntervalReturn = Double(timeInt)
+                        let myConvertedDate = Date(timeIntervalSince1970: timeIntervalReturn)
+//                        print("Time integer has been converted from \(timeInt) to \(myConvertedDate)")
+                        return myConvertedDate
+                    }
+                    
+                    // Convert Int to Date
+                    var convertedStartTimeDate = convertIntegerToDate(timeInt: startTimeData as! Int)
+                    var convertedStopTimeDate = convertIntegerToDate(timeInt: stopTimeData as! Int)
+                   
+                    // Convert Date to String
+                    func convertDateToString(useTime: Date)-> String {
+                    let stringTimeFormatter = DateFormatter()
+                    stringTimeFormatter.timeStyle = .short
+                    stringTimeFormatter.dateStyle = .none
+//                    var stringStartTime = convertTimeToInt(time: timePicker.date)
+                    let convertedTime:String = stringTimeFormatter.string(from: useTime)
+                        return convertedTime
+                    }
+                    
+                    let startTimeString = convertDateToString(useTime: convertedStartTimeDate)
+                    let stopTimeString = convertDateToString(useTime: convertedStopTimeDate)
+                    
+
+                    
+                    let event = myData.init(firstRowLabel: title as! String, secondRowLabel: location as! String, startTimeLabel: startTimeString, rawStartTime: convertedStartTimeDate, stopTimeLabel: stopTimeString, rawStopTime: convertedStopTimeDate, isSpecialStatus: special as! Bool, uniqueID: uniqueEventID as! String)
+                    tableData.append(event)
+                    self.myTableView.reloadData()
+//                    print(tableData)
+                }
+                
+            }
+            
+        }
+     
+        
+    }
     
     
-    
+    @IBAction func refreshData(_ sender: Any) {
+        downloadFirebaseData()
+        myTableView.reloadData()
+        print(tableData)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         getUserId()
+        ref = Database.database().reference()
+        downloadFirebaseData()
+   
     }
 
     @IBAction func refreshTableView(_ sender: Any) {
@@ -190,3 +248,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 }
 
+extension Date
+{
+    func toString( dateFormat format  : String ) -> String
+    {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.string(from: self)
+    }
+    
+}

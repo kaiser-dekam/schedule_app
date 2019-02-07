@@ -23,6 +23,10 @@ class SettingsViewController: UIViewController {
     
         }
     
+    @IBAction func deleteData(_ sender: Any) {
+        tableData.removeAll()
+        ref!.child(userID!).removeValue()
+    }
     
         
     

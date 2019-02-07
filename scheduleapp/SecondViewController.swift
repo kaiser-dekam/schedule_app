@@ -110,11 +110,7 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
     }
     
-    //----------Organizing Content In Order -----------------
-    func orderContent() {
-        tableData = tableData.sorted(by: { $0.rawStartTime > $1.rawStartTime })
-        tableData = tableData.reversed()
- }
+    
     //----------Add locations to recently used list----------
     func addToRecentLocations(location:String) {
         if recentLocations.contains(location) {
@@ -191,54 +187,55 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         let inputTimeStart = timeInputStart.text
         let inputTimeStop = timeInputStop.text
         if (inputSourceOne != "" && inputTimeStart != "") {
-            print(isSingleTimeEvent)
            
             switch isSingleTimeEvent {
             case true:
             //Add Item to Local dictionary/struct
-                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true, isEventTimeLocked: eventLockStatus)
+                let uniqueEventID = ref!.childByAutoId().key
+
+                
+                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: true, uniqueID: uniqueEventID!)
                 tableData.append(newItem)
             //Add Items to FIREBASE
-
+                //assign unique id number to event
+                
                 let data = ["Title": inputSourceOne!,
                             "location": inputSourceTwo!,
                             "start_time":startTimeInt,
                             "stop_time":stopTimeInt,
-                            "special_status": true
+                            "special_status": true,
+                            "uniqueID": uniqueEventID!
                     ] as [String : Any]
-                self.ref.child(userID!).child("Event Data").childByAutoId().setValue(data)
+                self.ref.child(userID!).child("Events").child(uniqueEventID!).setValue(data)
 
                 
             case false:
             //Add Item to Local dictionary/struct
-                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false, isEventTimeLocked: eventLockStatus)
+
+                let uniqueEventID = ref!.childByAutoId().key
+
+                let newItem = myData(firstRowLabel: inputSourceOne!, secondRowLabel: inputSourceTwo!, startTimeLabel: inputTimeStart!, rawStartTime: timePicker.date, stopTimeLabel: inputTimeStop!, rawStopTime: stopTimePicker.date, isSpecialStatus: false, uniqueID: uniqueEventID!)
                 tableData.append(newItem)
             //Add Item to FIREBASE
                 let data = ["Title": inputSourceOne!,
                             "location": inputSourceTwo!,
                             "start_time":startTimeInt,
                             "stop_time":stopTimeInt,
-                            "special_status": false
+                            "special_status": false,
+                            "uniqueID": uniqueEventID!
                     ] as [String : Any]
-                self.ref.child(userID!).child("Event Data").childByAutoId().setValue(data)
+                self.ref.child(userID!).child("Events").child(uniqueEventID!).setValue(data)
             }
             
             
             
-            if (tableData.count >= 2) {
-                orderContent()
-            }
+           
             addToRecentLocations(location: inputSourceTwo!)
             inputOne.text = ""
             inputTwo.text = ""
             timeInputStart.text = ""
             timeInputStop.text = ""
-            print(tableData)
         }
-        
-        
-        
-        
     }
 
 
