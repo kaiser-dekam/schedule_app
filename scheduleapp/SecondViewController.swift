@@ -182,7 +182,6 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
         }
     }
     
-    
     //---------Add to data-----------------------------------
     @IBAction func addItem(_ sender: Any) {
         let inputSourceOne = inputOne.text
@@ -207,9 +206,10 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                             "start_time":startTimeInt,
                             "stop_time":stopTimeInt,
                             "special_status": true,
-                            "uniqueID": uniqueEventID!
+                            "uniqueID": uniqueEventID!,
+                            "project": currentProject
                     ] as [String : Any]
-                self.ref.child(userID!).child("Events").child(uniqueEventID!).setValue(data)
+                self.ref.child("Event_Data").child(currentProject).child("Events").child(uniqueEventID!).setValue(data)
 
                 
             case false:
@@ -225,9 +225,13 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                             "start_time":startTimeInt,
                             "stop_time":stopTimeInt,
                             "special_status": false,
-                            "uniqueID": uniqueEventID!
+                            "uniqueID": uniqueEventID!,
+                            "project": currentProject
                     ] as [String : Any]
-                self.ref.child(userID!).child("Events").child(uniqueEventID!).setValue(data)
+//                self.ref.child(userID!).child("Events").child(uniqueEventID!).setValue(data)
+                
+                //Save new path for events... see Bear note
+                self.ref.child("Event_Data").child(currentProject).child("Events").child(uniqueEventID!).setValue(data)
             }
             
             

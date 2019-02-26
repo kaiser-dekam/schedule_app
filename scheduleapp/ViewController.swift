@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 struct myData {
     var firstRowLabel: String
@@ -60,6 +61,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if (tableData.count >= 2) {
                 orderContent()
             }
+        print(tableData)
         switch tableData[indexPath.row].isSpecialStatus {
         case false:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
@@ -84,14 +86,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
    
 
     
-    
 //   Ability to delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let eventIDForDelete: String = tableData[indexPath.row].uniqueID
             print("Unique ID for deletion \(eventIDForDelete)")
-            ref!.child(userID!).child("Events").child(eventIDForDelete).removeValue()
+            ref!.child("Event_Data").child(currentProject).child("Events").child(eventIDForDelete).removeValue()
             tableData.removeAll()
             downloadFirebaseData()
             tableView.reloadData()
@@ -148,19 +149,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
 
     
-    func getUserId() {
-        let user = Auth.auth().currentUser
-        if let user = user {
-            let uid = user.uid
-            print("User ID Received")
-        }
-        userID = user?.uid
-    }
+   
     
     func downloadFirebaseData() {
-        ref.child(userID!).child("Events").observeSingleEvent(of: .value) { (snapshot) in
-            
-           
+        tableData.removeAll()
+        ref.child("Event_Data").child(currentProject).child("Events").observeSingleEvent(of: .value) { (snapshot) in
             // Get User Value
             if snapshot.childrenCount > 0 {
                 tableData.removeAll()
@@ -218,13 +211,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func refreshData(_ sender: Any) {
         downloadFirebaseData()
         myTableView.reloadData()
-        print(tableData)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        getUserId()
         ref = Database.database().reference()
         downloadFirebaseData()
    
@@ -246,6 +237,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension Date

@@ -44,7 +44,9 @@ class LoginViewController: UIViewController {
             Auth.auth().signIn(withEmail: email, password: pass) { (user, error) in
                 if let u = user {
                     // User is found go to home screen
-                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                    self.getUserId()
+                    
+                    self.performSegue(withIdentifier: "goToProjects", sender: self)
                 } else {
                     // Error, check error and show message
                 }
@@ -55,7 +57,8 @@ class LoginViewController: UIViewController {
             Auth.auth().createUser(withEmail: email, password: pass) { (user, error) in
                 if let u = user {
                     // User is found, go to home screen
-                    self.performSegue(withIdentifier: "goToHome", sender: self)
+                    self.getUserId()
+                    self.performSegue(withIdentifier: "goToProjects", sender: self)
                 } else {
                     // Error, check error and show message
 
@@ -68,11 +71,20 @@ class LoginViewController: UIViewController {
        
     }
     
+    func getUserId() {
+        let user = Auth.auth().currentUser
+        if let user = user {
+            let uid = user.uid
+            print("User ID Received")
+        }
+        userID = user?.uid
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        loginButton.isEnabled = false
     }
 
     override func didReceiveMemoryWarning() {

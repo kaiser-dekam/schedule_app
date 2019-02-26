@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3CDF41CDF53052DD1C8D5466 /* Pods_scheduleapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC28A5F9A672ED6C88ED4BA5 /* Pods_scheduleapp.framework */; };
+		4147FE10220CF50800E81BCD /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147FE0F220CF50800E81BCD /* NewProjectVC.swift */; };
+		4147FE122214F11000E81BCD /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147FE112214F11000E81BCD /* ProjectsViewController.swift */; };
+		41621E052223987B000472D8 /* ProjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41621E042223987B000472D8 /* ProjectViewCell.swift */; };
 		9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */; };
 		9B386E4621067FF70049F307 /* greenStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B386E4521067FF70049F307 /* greenStatus.png */; };
 		9B42EF9F211E3FEC00165B37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */; };
@@ -46,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		1FBACAB8D06312FAE915BC7E /* Pods-scheduleappUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scheduleappUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-scheduleappUITests/Pods-scheduleappUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		4147FE0F220CF50800E81BCD /* NewProjectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProjectVC.swift; sourceTree = "<group>"; };
+		4147FE112214F11000E81BCD /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
+		41621E042223987B000472D8 /* ProjectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewCell.swift; sourceTree = "<group>"; };
 		8D568909EB38EB3A8B7332F4 /* Pods-scheduleappUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scheduleappUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-scheduleappUITests/Pods-scheduleappUITests.release.xcconfig"; sourceTree = "<group>"; };
 		9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SendMe.xcdatamodel; sourceTree = "<group>"; };
 		9B386E4521067FF70049F307 /* greenStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenStatus.png; path = Images/greenStatus.png; sourceTree = "<group>"; };
@@ -161,6 +167,9 @@
 				9B6816C920F55C5E00A2153F /* Main.storyboard */,
 				9B42EFA0211E9FA800165B37 /* SettingsViewController.swift */,
 				9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */,
+				4147FE112214F11000E81BCD /* ProjectsViewController.swift */,
+				4147FE0F220CF50800E81BCD /* NewProjectVC.swift */,
+				41621E042223987B000472D8 /* ProjectViewCell.swift */,
 				9B6816F720F5679E00A2153F /* MyViewCell.swift */,
 				9BB72BEE215986410068F857 /* MySpecialCell.swift */,
 				9B6816CC20F55C5E00A2153F /* Assets.xcassets */,
@@ -429,8 +438,11 @@
 				9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */,
 				9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */,
 				9BB72BEF215986410068F857 /* MySpecialCell.swift in Sources */,
+				41621E052223987B000472D8 /* ProjectViewCell.swift in Sources */,
+				4147FE122214F11000E81BCD /* ProjectsViewController.swift in Sources */,
 				9B6816C820F55C5E00A2153F /* ViewController.swift in Sources */,
 				9B6816C620F55C5E00A2153F /* AppDelegate.swift in Sources */,
+				4147FE10220CF50800E81BCD /* NewProjectVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
