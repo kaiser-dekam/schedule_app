@@ -8,11 +8,21 @@
 
 import UIKit
 import FirebaseAuth
+import Firebase
+
+var reference: DatabaseReference!
 
 
 class LoginViewController: UIViewController {
 
+    struct userConfig {
+        var email:String
+        var ownedProjects:[String]
+        var guestProjects:[String]
+    }
     
+    
+    @IBOutlet var loginView: UIView!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var entryPassword: UITextField!
     @IBOutlet weak var entryEmail: UITextField!
@@ -21,17 +31,17 @@ class LoginViewController: UIViewController {
     
     var isSignIn: Bool = true
     var shareCode: String = ""
-    
+
     //Register vs Login Selector
     @IBAction func signInSelectorChanged(_ sender: Any) {
         // Flip the boolean
         isSignIn = !isSignIn
         
         if isSignIn {
-            signInLabel.text = "Sign In"
-            loginButton.setTitle("SIGN IN", for: .normal)
+            signInLabel.text = "Welcome Back."
+            loginButton.setTitle("LOGIN", for: .normal)
         } else {
-            signInLabel.text = "Register"
+            signInLabel.text = "Let's Get Started."
             loginButton.setTitle("REGISTER", for: .normal)
         }
     }
@@ -45,7 +55,6 @@ class LoginViewController: UIViewController {
                 if let u = user {
                     // User is found go to home screen
                     self.getUserId()
-                    
                     self.performSegue(withIdentifier: "goToProjects", sender: self)
                 } else {
                     // Error, check error and show message
@@ -71,20 +80,29 @@ class LoginViewController: UIViewController {
        
     }
     
+
+    
+    
     func getUserId() {
         let user = Auth.auth().currentUser
         if let user = user {
             let uid = user.uid
+            let email = user.email
             print("User ID Received")
         }
         userID = user?.uid
+        userEmail = user?.email
     }
+    
+    
+ 
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        reference = Database.database().reference()
+       
     }
 
     override func didReceiveMemoryWarning() {

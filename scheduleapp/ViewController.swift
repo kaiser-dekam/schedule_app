@@ -23,6 +23,7 @@ struct myData {
     
 }
 var userID: String?
+var userEmail: String?
 var tableData: [myData] = []
 var ref: DatabaseReference!
 
@@ -113,22 +114,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     //Change Swipe to delete background color and text
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deletebutton = UITableViewRowAction(style: .default, title: "Delete") {
-            
             (action, indexPath) in tableView.dataSource?.tableView!(tableView, commit: .delete, forRowAt: indexPath)
-            
-            
-            
-            
             return
         }
-        
-  
-        
-        
+
         let swipeColor = UIColor.init(red: 109/255, green: 109/255, blue: 109/255, alpha: 1.0)
         deletebutton.backgroundColor = swipeColor
         deletebutton.title = "Remove"
-        
         return [deletebutton]
     }
     
@@ -143,14 +135,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return newString
     }
-    
-    //Delay button will delay *all* upcoming events by 15 minutes.
-    //This needs to be adjustable. Provide an option to the user to choose how long to delay
-    
 
-    
-   
-    
     func downloadFirebaseData() {
         tableData.removeAll()
         ref.child("Event_Data").child(currentProject).child("Events").observeSingleEvent(of: .value) { (snapshot) in

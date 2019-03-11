@@ -18,6 +18,8 @@ class NewProjectVC: UIViewController {
     @IBOutlet weak var shareCode: UITextField!
     
     
+    @IBOutlet weak var guestShareCode: UITextField!
+    
     var projectTitleString: String = ""
     var shareCodeString: String = ""
     
@@ -41,16 +43,34 @@ class NewProjectVC: UIViewController {
         }
     
         let projectID = firebaseRef!.childByAutoId().key
+        print("Project ID Generated \(projectID)")
         let projectData = ["project_title": projectTitleString,
                     "share_code": shareCodeString,
                     "project_id": projectID!
             ] as [String : Any]
         print(userID!)
-        firebaseRef.child("projects").child(userID!).child(projectID!).setValue(projectData)
         currentProject = projectID!
+        
+        //Add project ownership to userconfig
+        let userConfigAddition = ["permissions": "owned",
+        "project_title": projectTitleString,
+        "project_id" : projectID] as [String: Any]
+        
+        //Add user configuration and project to firebase
+        firebaseRef.child("userconfig").child(userID!).child("config-projects").child("owner").child(currentProject).setValue(userConfigAddition)
+        print("user permissions saved to firebase")
+        firebaseRef.child("project_data").child(projectID!).child("data").setValue(projectData)
     }
     
+    @IBAction func addGuestProject(_ sender: Any) {
+//        var guestCode = guestShareCode.text
+//
+//        if guestShareCode != nil {
+//            firebaseRef.child("projects")
+//
+        }
     
+  
     
 
 

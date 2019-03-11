@@ -14,12 +14,17 @@ struct projectStruct {
     var project_id: String
 }
 
+struct configStruct {
+    var title: String
+    var project_id: String
+    var ownership: String
+}
+
 
 var fireRef: DatabaseReference!
-//var projectArray:[projectStruct] = []
 var projectArray: [projectStruct] = []
-
-
+var configArray: [configStruct] = []
+var userConfigDownloadCompleted: Bool = false
 
 class ProjectsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -39,17 +44,20 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        currentProject = projectArray[indexPath.row].title
+        currentProject = projectArray[indexPath.row].project_id
         performSegue(withIdentifier: "toEvents", sender: self)
     }
     
-//    Deleting Projects
+//    Deleting Projects  ------ WILL NEED TO BE UPDATED
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == UITableViewCellEditingStyle.delete {
             let projectIDForDelete: String = projectArray[indexPath.row].project_id
             print(userID!)
-            fireRef!.child("projects").child(userID!).child(projectIDForDelete).removeValue()
+            fireRef!.child("project_data").child(projectIDForDelete).removeValue()
+            print("User ID = \(userID!) and projectIDForDelete = \(projectIDForDelete)")
+            ref!.child("Event_Data").child(projectIDForDelete).removeValue()
+        ref!.child("userconfig").child(userID!).child("projects").child("owner").child(projectIDForDelete).removeValue()
             projectArray.removeAll()
             downloadData()
             tableView.reloadData()
@@ -60,28 +68,75 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
 
     
     func downloadData() {
+        
+        var isDownloadComplete: Bool = false
+        print("Download Data Started")
+        var index = 0
         projectArray.removeAll()
-        fireRef.child("projects").child("\(userID!)").observeSingleEvent(of: .value) { (snapshot) in
-            // Get User Value
+
+        for items in configArray {
+        print("Starting Download in Config Array. Index: \(index)")
+                let downloadingID = configArray[index].project_id
+                print("Starting download for projectID: \(downloadingID)")
+                fireRef.child("project_data").child(downloadingID).observeSingleEvent(of: .value) { (snapshot) in
                 for project in snapshot.children.allObjects as![DataSnapshot]{
-                    print("inside snapshot")
-                    let projectObject = project.value as? [String: AnyObject]
-                    let title = projectObject?["project_title"]
-                    let projectID = projectObject?["project_id"]
-                    
-                    var project_Data = projectStruct.init(title: title as! String, project_id: projectID as! String)
-                    projectArray.append(project_Data)
-                    print(projectArray)
+                let projectObject = project.value as? [String: AnyObject]
+                let projectid = projectObject?["project_id"]
+                let projecttitle = projectObject?["project_title"]
+                var project_Data = projectStruct.init(title: projecttitle as! String, project_id: projectid as! String)
+                projectArray.append(project_Data)
+                print("Finished downloading \(downloadingID) and adding \(project_Data) to projectArray")
+                }
+                if index == configArray.count {
+                    isDownloadComplete = true
+                }
+                if isDownloadComplete == true {
+                    print("Download complete: \(isDownloadComplete)")
+                    self.projectsTableView.reloadData()
+                }
             }
-            // change to projectTableView
-            self.projectsTableView.reloadData()
+            index += 1
+            print("Repeating through config")
+        }
+    }
+    
+    func getUserConfig() {
+        // Download owned projects
+        configArray.removeAll()
+        print("Starting to download user configuration")
+        reference.child("userconfig").child(userID!).child("config-projects").child("owner").observeSingleEvent(of: .value) { (snapshot) in
+            // Get User Value
+            for project in snapshot.children.allObjects as![DataSnapshot]{
+                userConfigDownloadCompleted = false
+                let configObject = project.value as? [String: AnyObject]
+                let title = configObject?["project_title"]
+                let projectID = configObject?["project_id"]
+                let ownership = configObject?["permissions"]
+                var configData = configStruct.init(title: title as! String, project_id: projectID as! String, ownership: ownership as! String)
+                configArray.append(configData)
+            }
+            userConfigDownloadCompleted = true
+            print("Config Array: \(configArray)")
+            print("Finished download of user configuration")
+            self.startDownload()
+            
+        }
+    }
+    
+    func startDownload () {
+        if userConfigDownloadCompleted == true {
+            print("+++++++++++++ About to start downloading Data +++++++++++")
+            downloadData()
         }
     }
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fireRef = Database.database().reference()
-        downloadData()
+        getUserConfig()
+
         hideKeyboardWhenTappedAround()
     }
     

@@ -25,7 +25,13 @@
 		9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816F520F561DA00A2153F /* SecondViewController.swift */; };
 		9B6816F820F5679E00A2153F /* MyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6816F720F5679E00A2153F /* MyViewCell.swift */; };
 		9B827B0D2164762100A78BB3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9B827B0C2164762100A78BB3 /* GoogleService-Info.plist */; };
+		9B8474E12224E76400FB676E /* background_Login.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B8474E02224E76400FB676E /* background_Login.png */; };
 		9BB72BEF215986410068F857 /* MySpecialCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB72BEE215986410068F857 /* MySpecialCell.swift */; };
+		9BF11736222583DD009E6780 /* line.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF11735222583DD009E6780 /* line.png */; };
+		9BF1173E22258E2D009E6780 /* new-project-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF1173D22258E2D009E6780 /* new-project-button.png */; };
+		9BF1174022259211009E6780 /* new-event-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF1173F22259211009E6780 /* new-event-button.png */; };
+		9BF1174222259562009E6780 /* Create-Project-Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF1174122259562009E6780 /* Create-Project-Background.png */; };
+		9BF117442225A0B9009E6780 /* login-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 9BF117432225A0B9009E6780 /* login-button.png */; };
 		D996A878A209932D91F3E7EB /* Pods_scheduleappTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFDE53CAF4488741D6921B95 /* Pods_scheduleappTests.framework */; };
 		FE60C0C82E94F75214812FEB /* Pods_scheduleappUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C488F43EB6B711FC041C6177 /* Pods_scheduleappUITests.framework */; };
 /* End PBXBuildFile section */
@@ -73,7 +79,13 @@
 		9B6816F520F561DA00A2153F /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		9B6816F720F5679E00A2153F /* MyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewCell.swift; sourceTree = "<group>"; };
 		9B827B0C2164762100A78BB3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9B8474E02224E76400FB676E /* background_Login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_Login.png; sourceTree = "<group>"; };
 		9BB72BEE215986410068F857 /* MySpecialCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySpecialCell.swift; sourceTree = "<group>"; };
+		9BF11735222583DD009E6780 /* line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = line.png; path = Images/line.png; sourceTree = SOURCE_ROOT; };
+		9BF1173D22258E2D009E6780 /* new-project-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "new-project-button.png"; path = "Images/new-project-button.png"; sourceTree = SOURCE_ROOT; };
+		9BF1173F22259211009E6780 /* new-event-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "new-event-button.png"; path = "Images/new-event-button.png"; sourceTree = SOURCE_ROOT; };
+		9BF1174122259562009E6780 /* Create-Project-Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Create-Project-Background.png"; path = "Images/Create-Project-Background.png"; sourceTree = SOURCE_ROOT; };
+		9BF117432225A0B9009E6780 /* login-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "login-button.png"; path = "Images/login-button.png"; sourceTree = SOURCE_ROOT; };
 		C488F43EB6B711FC041C6177 /* Pods_scheduleappUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_scheduleappUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D50DEFD8D6A85070B6F8AC75 /* Pods-scheduleappTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scheduleappTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-scheduleappTests/Pods-scheduleappTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD0F8FE8DE9817CEE2907536 /* Pods-scheduleapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scheduleapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-scheduleapp/Pods-scheduleapp.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +153,7 @@
 				9B6816D920F55C5E00A2153F /* scheduleappTests */,
 				9B6816E420F55C5E00A2153F /* scheduleappUITests */,
 				9B6816C320F55C5E00A2153F /* Products */,
+				9B8474E22224E76B00FB676E /* backgrounds */,
 				9B386E4521067FF70049F307 /* greenStatus.png */,
 				4E9E60B4490DC7D7035A6BFD /* Pods */,
 				8FB3EB46EF256D579DCE8BBC /* Frameworks */,
@@ -196,6 +209,19 @@
 				9B6816E720F55C5E00A2153F /* Info.plist */,
 			);
 			path = scheduleappUITests;
+			sourceTree = "<group>";
+		};
+		9B8474E22224E76B00FB676E /* backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				9BF1174122259562009E6780 /* Create-Project-Background.png */,
+				9BF1173F22259211009E6780 /* new-event-button.png */,
+				9BF1173D22258E2D009E6780 /* new-project-button.png */,
+				9BF117432225A0B9009E6780 /* login-button.png */,
+				9B8474E02224E76400FB676E /* background_Login.png */,
+				9BF11735222583DD009E6780 /* line.png */,
+			);
+			path = backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -307,7 +333,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B6816D020F55C5E00A2153F /* LaunchScreen.storyboard in Resources */,
+				9BF11736222583DD009E6780 /* line.png in Resources */,
+				9BF117442225A0B9009E6780 /* login-button.png in Resources */,
+				9BF1173E22258E2D009E6780 /* new-project-button.png in Resources */,
+				9BF1174222259562009E6780 /* Create-Project-Background.png in Resources */,
+				9B8474E12224E76400FB676E /* background_Login.png in Resources */,
 				9B6816CD20F55C5E00A2153F /* Assets.xcassets in Resources */,
+				9BF1174022259211009E6780 /* new-event-button.png in Resources */,
 				9B827B0D2164762100A78BB3 /* GoogleService-Info.plist in Resources */,
 				9B6816CB20F55C5E00A2153F /* Main.storyboard in Resources */,
 				9B386E4621067FF70049F307 /* greenStatus.png in Resources */,
