@@ -56,6 +56,7 @@ class LoginViewController: UIViewController {
                     // User is found go to home screen
                     self.getUserId()
                     self.performSegue(withIdentifier: "goToProjects", sender: self)
+            
                 } else {
                     // Error, check error and show message
                 }
@@ -67,6 +68,7 @@ class LoginViewController: UIViewController {
                 if let u = user {
                     // User is found, go to home screen
                     self.getUserId()
+                    reference!.child("users").child(userID!).setValue(["user-email": email, "user-id": userID])
                     self.performSegue(withIdentifier: "goToProjects", sender: self)
                 } else {
                     // Error, check error and show message

@@ -32,6 +32,8 @@ var ref: DatabaseReference!
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTableView: UITableView!
     
+    
+    
     //----------Organizing Content In Order -----------------
     func orderContent() {
         tableData = tableData.sorted(by: { $0.rawStartTime > $1.rawStartTime })
@@ -218,6 +220,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
 
+   
+    
+    
+    
+    @IBAction func addPermissionsToUser(_ sender: Any) {
+        // TODO: Add pupup modal that lets you adds projects to users emails to their permissions
+        //Also, let them choose if that person should have owner or guess access
+        //https://www.youtube.com/watch?v=CXvOS6hYADc
+    }
     
     
     

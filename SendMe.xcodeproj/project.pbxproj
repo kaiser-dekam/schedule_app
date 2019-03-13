@@ -11,6 +11,7 @@
 		4147FE10220CF50800E81BCD /* NewProjectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147FE0F220CF50800E81BCD /* NewProjectVC.swift */; };
 		4147FE122214F11000E81BCD /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147FE112214F11000E81BCD /* ProjectsViewController.swift */; };
 		41621E052223987B000472D8 /* ProjectViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41621E042223987B000472D8 /* ProjectViewCell.swift */; };
+		9B1339E92237F7B30043F9E7 /* InviteUserAccessVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1339E82237F7B30043F9E7 /* InviteUserAccessVC.swift */; };
 		9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B18699721042C1100FAB5CC /* SendMe.xcdatamodeld */; };
 		9B386E4621067FF70049F307 /* greenStatus.png in Resources */ = {isa = PBXBuildFile; fileRef = 9B386E4521067FF70049F307 /* greenStatus.png */; };
 		9B42EF9F211E3FEC00165B37 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */; };
@@ -59,6 +60,7 @@
 		4147FE112214F11000E81BCD /* ProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		41621E042223987B000472D8 /* ProjectViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewCell.swift; sourceTree = "<group>"; };
 		8D568909EB38EB3A8B7332F4 /* Pods-scheduleappUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-scheduleappUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-scheduleappUITests/Pods-scheduleappUITests.release.xcconfig"; sourceTree = "<group>"; };
+		9B1339E82237F7B30043F9E7 /* InviteUserAccessVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteUserAccessVC.swift; sourceTree = "<group>"; };
 		9B18699821042C1100FAB5CC /* SendMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SendMe.xcdatamodel; sourceTree = "<group>"; };
 		9B386E4521067FF70049F307 /* greenStatus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = greenStatus.png; path = Images/greenStatus.png; sourceTree = "<group>"; };
 		9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 				9B6816F520F561DA00A2153F /* SecondViewController.swift */,
 				9B6816C720F55C5E00A2153F /* ViewController.swift */,
 				9B6816C920F55C5E00A2153F /* Main.storyboard */,
+				9B1339E82237F7B30043F9E7 /* InviteUserAccessVC.swift */,
 				9B42EFA0211E9FA800165B37 /* SettingsViewController.swift */,
 				9B42EF9E211E3FEC00165B37 /* LoginViewController.swift */,
 				4147FE112214F11000E81BCD /* ProjectsViewController.swift */,
@@ -468,6 +471,7 @@
 				9B6816F820F5679E00A2153F /* MyViewCell.swift in Sources */,
 				9B42EFA1211E9FA800165B37 /* SettingsViewController.swift in Sources */,
 				9B18699A21042D8800FAB5CC /* SendMe.xcdatamodeld in Sources */,
+				9B1339E92237F7B30043F9E7 /* InviteUserAccessVC.swift in Sources */,
 				9B6816F620F561DA00A2153F /* SecondViewController.swift in Sources */,
 				9BB72BEF215986410068F857 /* MySpecialCell.swift in Sources */,
 				41621E052223987B000472D8 /* ProjectViewCell.swift in Sources */,
