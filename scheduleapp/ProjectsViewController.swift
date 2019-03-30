@@ -48,7 +48,7 @@ class ProjectsViewController: UIViewController, UITableViewDelegate, UITableView
         performSegue(withIdentifier: "toEvents", sender: self)
     }
     
-//    Deleting Projects  ------ WILL NEED TO BE UPDATED
+//    Deleting Projects
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == UITableViewCellEditingStyle.delete {

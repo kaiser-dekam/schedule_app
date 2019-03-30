@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 
+var firRef: DatabaseReference!
 
 
 class InviteUserAccessVC: UIViewController {
@@ -17,8 +18,14 @@ class InviteUserAccessVC: UIViewController {
     
     
     @IBAction func addUserToProject(_ sender: Any) {
-       
+        // Get users email
+//        var testEmail = fireRef.child("users").queryEqual(toValue: "kaiserddekam@gmail.com")
         
+//        print(testEmail)
+
+        // Search Users/ for email and get unique userid
+        
+        // change userconfig with their id and assign owner or guest permissions
         
         
         
@@ -32,6 +39,7 @@ class InviteUserAccessVC: UIViewController {
         super.viewDidLoad()
         reference = Database.database().reference()
         // Do any additional setup after loading the view.
+        firRef = Database.database().reference()
     }
     
 

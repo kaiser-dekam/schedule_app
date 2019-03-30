@@ -129,16 +129,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="AMQ-Wd-8bF">
-                                <rect key="frame" x="20" y="120" width="374" height="776"/>
+                                <rect key="frame" x="0.0" y="166" width="414" height="730"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="2" indentationWidth="0.0" reuseIdentifier="MyCell" rowHeight="82" id="dHF-SM-Eqj" customClass="MyViewCell" customModule="scheduleapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="82"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dHF-SM-Eqj" id="049-sN-IfY">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UeX-qK-52i">
@@ -187,10 +187,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MySpecialCell" rowHeight="78" id="dce-rW-QNn" customClass="MySpecialCell" customModule="scheduleapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="110" width="374" height="78"/>
+                                        <rect key="frame" x="0.0" y="110" width="414" height="78"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.69999999999999996" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dce-rW-QNn" id="tJc-cW-ac6">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="78"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="78"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yN1-JC-LKC">
@@ -234,6 +234,17 @@
                                             <segue destination="j4l-A0-sbd" kind="show" id="e98-iH-h7a"/>
                                         </connections>
                                     </button>
+                                    <tabBar hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wEB-tX-hS2">
+                                        <rect key="frame" x="1" y="58" width="414" height="49"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <items>
+                                            <tabBarItem title="Projects" id="ZAe-3S-gZd"/>
+                                            <tabBarItem title="Create" id="aVb-h1-lhy"/>
+                                            <tabBarItem title="Settings" id="wwN-P4-nci"/>
+                                            <tabBarItem title="Users" id="vhn-mA-1Lq"/>
+                                        </items>
+                                    </tabBar>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
@@ -278,11 +289,24 @@
                                     <action selector="addPermissionsToUser:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RFV-08-9h6"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" fixedFrame="YES" searchBarStyle="minimal" placeholder="Ceremony..." translatesAutoresizingMaskIntoConstraints="NO" id="pIR-l2-mZB">
+                                <rect key="frame" x="0.0" y="110" width="414" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                <scopeButtonTitles>
+                                    <string>Title</string>
+                                    <string>Title</string>
+                                </scopeButtonTitles>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="9ge-QF-rUl"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="eventSearchBar" destination="pIR-l2-mZB" id="K9k-oM-fbA"/>
                         <outlet property="myTableView" destination="AMQ-Wd-8bF" id="AgP-t9-9tf"/>
                     </connections>
                 </viewController>
@@ -782,8 +806,8 @@
         <image name="new-project-button.png" width="1200" height="321"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A2F-WB-alW"/>
-        <segue reference="d1X-Bm-dMr"/>
+        <segue reference="KZ7-yt-1E8"/>
+        <segue reference="e98-iH-h7a"/>
         <segue reference="gOd-du-8ug"/>
     </inferredMetricsTieBreakers>
 </document>

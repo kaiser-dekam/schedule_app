@@ -26,11 +26,12 @@ var userID: String?
 var userEmail: String?
 var tableData: [myData] = []
 var ref: DatabaseReference!
-
+var searchEntry: String?
 
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTableView: UITableView!
+    @IBOutlet weak var eventSearchBar: UISearchBar!
     
     
     
@@ -64,7 +65,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             if (tableData.count >= 2) {
                 orderContent()
             }
-        print(tableData)
+        
+        // Remove items that don't match search query. ------------
+        //Probably doesn't work?
+        if (tableData[indexPath.row].firstRowLabel != searchEntry) {
+            print("Event Title did not match")
+            tableData.remove(at: indexPath.row)
+            myTableView.reloadData()
+        }
+        //----------------------------------
         switch tableData[indexPath.row].isSpecialStatus {
         case false:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MyCell") as! MyViewCell
@@ -75,16 +84,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.cellViewLayer.layer.cornerRadius = 8
             cell.cellViewLayer.layer.masksToBounds = true
             tableView.separatorStyle = .singleLine
-            return cell
+            
+            // Check if event is currently occuring. If it is set the background color to green.
+            if (Date() > tableData[indexPath.row].rawStartTime && Date() < tableData[indexPath.row].rawStopTime) {
+                cell.backgroundColor = UIColor.green
+            }
+                return cell
+            
+            
         case true:
             //Adding special cell
             let secondaryCell = tableView.dequeueReusableCell(withIdentifier: "MySpecialCell") as! MySpecialCell
             secondaryCell.lblTextSpecial.text = tableData[indexPath.row].firstRowLabel
             secondaryCell.lblTimeSpecial.text = tableData[indexPath.row].startTimeLabel
-            
-            return secondaryCell
+                return secondaryCell
 
-        }
+            }
     }
    
 
@@ -206,6 +221,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ref = Database.database().reference()
         downloadFirebaseData()
    
+        
     }
 
     @IBAction func refreshTableView(_ sender: Any) {

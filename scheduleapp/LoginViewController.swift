@@ -59,6 +59,13 @@ class LoginViewController: UIViewController {
             
                 } else {
                     // Error, check error and show message
+                    // TODO: Provide more specific messaging for different errors
+                    let alert = UIAlertController(title: "Problem Logging In", message: "Check Email and Password. If problem persists check that you have a network connection", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
+                        NSLog("The \"OK\" alert occured.")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
+
                 }
             }
            
@@ -72,6 +79,12 @@ class LoginViewController: UIViewController {
                     self.performSegue(withIdentifier: "goToProjects", sender: self)
                 } else {
                     // Error, check error and show message
+                    // TODO: Provide more specific messaging for different errors
+                    let alert = UIAlertController(title: "Problem Creating Account", message: "Check Email and Password. If problem persists check that you have a network connection", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .destructive, handler: { _ in
+                        NSLog("The \"OK\" alert occured.")
+                    }))
+                    self.present(alert, animated: true, completion: nil)
 
                 }
             }
