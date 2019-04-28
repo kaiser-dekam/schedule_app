@@ -41,23 +41,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableData = tableData.reversed()
     }
     
-    
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //How many rows in tableview
         return tableData.count
     }
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.alpha = 0
-        
-        UIView.animate(
-            withDuration: 0.3,
-            delay: 0.15 * Double(indexPath.row),
-            animations: {
-                cell.alpha = 1
-        })
-    }
     
+   
+        
+    
+
     
 //----------------------Assigning Content to Cell Elements---------------------
     
@@ -66,13 +62,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 orderContent()
             }
         
-        // Remove items that don't match search query. ------------
-        //Probably doesn't work?
-        if (tableData[indexPath.row].firstRowLabel != searchEntry) {
-            print("Event Title did not match")
-            tableData.remove(at: indexPath.row)
-            myTableView.reloadData()
-        }
+        // TODO: Remove items that don't match search query. ------------
+        // https://www.raywenderlich.com/472-uisearchcontroller-tutorial-getting-started
+        
         //----------------------------------
         switch tableData[indexPath.row].isSpecialStatus {
         case false:
@@ -85,10 +77,25 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             cell.cellViewLayer.layer.masksToBounds = true
             tableView.separatorStyle = .singleLine
             
-            // Check if event is currently occuring. If it is set the background color to green.
-            if (Date() > tableData[indexPath.row].rawStartTime && Date() < tableData[indexPath.row].rawStopTime) {
-                cell.backgroundColor = UIColor.green
+            if (removeOldEvents == true && tableData[indexPath.row].rawStopTime < Date()) {
+                cell.lblFirstRow.text = tableData[indexPath.row].firstRowLabel
+                cell.lblSecondRow.text = tableData[indexPath.row].secondRowLabel
+                cell.lblStartTime.text = tableData[indexPath.row].startTimeLabel
+                cell.lblStopTime.text = tableData[indexPath.row].stopTimeLabel
             }
+            
+                // Check if event is currently occuring. If it is set the background color to green.
+                if (Date() >= tableData[indexPath.row].rawStartTime && Date() <= tableData[indexPath.row].rawStopTime) {
+                    cell.backgroundColor = UIColor.green
+                    
+                }
+                //Needs to be massaged - too many events are being highlighted. COlors also need to be adjusted with RGB
+                if (tableData[indexPath.row].rawStartTime >= Date() - 6000 && (Date() < tableData[indexPath.row].rawStartTime)) {
+                    cell.backgroundColor = UIColor.yellow
+                }
+           
+           
+            
                 return cell
             
             
@@ -97,9 +104,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             let secondaryCell = tableView.dequeueReusableCell(withIdentifier: "MySpecialCell") as! MySpecialCell
             secondaryCell.lblTextSpecial.text = tableData[indexPath.row].firstRowLabel
             secondaryCell.lblTimeSpecial.text = tableData[indexPath.row].startTimeLabel
+            if (removeOldEvents == true && tableData[indexPath.row].rawStopTime < Date()) {
+                secondaryCell.backgroundColor = UIColor.gray
+            }
                 return secondaryCell
 
-            }
+        }
+        
+      
     }
    
 
@@ -110,12 +122,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         if editingStyle == UITableViewCellEditingStyle.delete {
             let eventIDForDelete: String = tableData[indexPath.row].uniqueID
             print("Unique ID for deletion \(eventIDForDelete)")
-            ref!.child("Event_Data").child(currentProject).child("Events").child(eventIDForDelete).removeValue()
-            tableData.removeAll()
-            downloadFirebaseData()
+            tableData.remove(at: indexPath.row)
+            ref!.child("Event_Data").child(currentProject_id).child("Events").child(eventIDForDelete).removeValue()
             tableView.reloadData()
             
-        }    //
+            
+        }    
     }
     
 
@@ -155,7 +167,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func downloadFirebaseData() {
         tableData.removeAll()
-        ref.child("Event_Data").child(currentProject).child("Events").observeSingleEvent(of: .value) { (snapshot) in
+        ref.child("Event_Data").child(currentProject_id).child("Events").observeSingleEvent(of: .value) { (snapshot) in
             // Get User Value
             if snapshot.childrenCount > 0 {
                 tableData.removeAll()
@@ -215,13 +227,33 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         myTableView.reloadData()
     }
     
+  
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.sayHello), userInfo: nil, repeats: true)
+    }
+    @objc func sayHello()
+    {
+        checkEventStatus()
+    }
+    
+    
+    
+    
+    
+    
+    func checkEventStatus() {
+        myTableView.reloadData()
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         ref = Database.database().reference()
         downloadFirebaseData()
-   
-        
+        scheduledTimerWithTimeInterval()
     }
 
     @IBAction func refreshTableView(_ sender: Any) {

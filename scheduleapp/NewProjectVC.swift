@@ -9,7 +9,9 @@
 import UIKit
 import Firebase
 
-var currentProject: String = "Testing"
+var currentProject_id: String = "Testing"
+var currentProject_title: String = ""
+var currentProject_permissions: String = ""
 
 var firebaseRef: DatabaseReference!
 
@@ -21,14 +23,11 @@ class NewProjectVC: UIViewController {
     var projectTitleString: String = ""
     
     @IBAction func createProjectButton(_ sender: Any) {
-
- 
         
-        
-        if projectTitle != nil  {
+        if projectTitle.text != ""  {
             projectTitleString = projectTitle.text!
-            currentProject = projectTitleString
-        }
+            currentProject_title = projectTitleString
+        
     
         let projectID = firebaseRef!.childByAutoId().key
         print("Project ID Generated \(projectID)")
@@ -36,7 +35,7 @@ class NewProjectVC: UIViewController {
                     "project_id": projectID!
             ] as [String : Any]
         print(userID!)
-        currentProject = projectID!
+        currentProject_id = projectID!
         
         //Add project ownership to userconfig
         let userConfigAddition = ["permissions": "owned",
@@ -44,9 +43,13 @@ class NewProjectVC: UIViewController {
         "project_id" : projectID] as [String: Any]
         
         //Add user configuration and project to firebase
-        firebaseRef.child("userconfig").child(userID!).child("config-projects").child("owner").child(currentProject).setValue(userConfigAddition)
+        firebaseRef.child("userconfig").child(userID!).child("config-projects").child("owner").child(currentProject_id).setValue(userConfigAddition)
         print("user permissions saved to firebase")
         firebaseRef.child("project_data").child(projectID!).child("data").setValue(projectData)
+        } else {
+            print("Project Title was empty")
+        }
+        
     }
     
 
@@ -65,6 +68,9 @@ class NewProjectVC: UIViewController {
         super.viewDidLoad()
         firebaseRef = Database.database().reference()
         hideKeyboardWhenTappedAround()
+        if projectTitleString.count == 6 {
+            print("Wedding found")
+        }
     }
     
 }

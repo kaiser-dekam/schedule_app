@@ -207,9 +207,9 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                             "stop_time":stopTimeInt,
                             "special_status": true,
                             "uniqueID": uniqueEventID!,
-                            "project": currentProject
+                            "project": currentProject_id
                     ] as [String : Any]
-                self.ref.child("Event_Data").child(currentProject).child("Events").child(uniqueEventID!).setValue(data)
+                self.ref.child("Event_Data").child(currentProject_id).child("Events").child(uniqueEventID!).setValue(data)
 
                 
             case false:
@@ -226,12 +226,12 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
                             "stop_time":stopTimeInt,
                             "special_status": false,
                             "uniqueID": uniqueEventID!,
-                            "project": currentProject
+                            "project": currentProject_id
                     ] as [String : Any]
 //                self.ref.child(userID!).child("Events").child(uniqueEventID!).setValue(data)
                 
                 //Save new path for events... see Bear note
-                self.ref.child("Event_Data").child(currentProject).child("Events").child(uniqueEventID!).setValue(data)
+                self.ref.child("Event_Data").child(currentProject_id).child("Events").child(uniqueEventID!).setValue(data)
             }
             
             
@@ -273,7 +273,8 @@ class SecondViewController: UIViewController, UIPickerViewDelegate, UIPickerView
 
         ref = Database.database().reference()
         
-        
+        hideKeyboardWhenTappedAround()
+
     }
     
     override func didReceiveMemoryWarning() {

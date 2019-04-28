@@ -76,6 +76,12 @@ class LoginViewController: UIViewController {
                     // User is found, go to home screen
                     self.getUserId()
                     reference!.child("users").child(userID!).setValue(["user-email": email, "user-id": userID])
+                    
+                    var cleanEmail = email.replacingOccurrences(of: ".", with: "_dot_")
+                    cleanEmail = cleanEmail.replacingOccurrences(of: "@", with: "_at_")
+                    print("Email cleaned to \(cleanEmail)")
+                    reference!.child("useremails").child(cleanEmail).child("information").setValue(["user-email": email, "user-id": userID!])
+                    print("finished with setting database values. Continuing to segue")
                     self.performSegue(withIdentifier: "goToProjects", sender: self)
                 } else {
                     // Error, check error and show message
@@ -117,7 +123,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         reference = Database.database().reference()
-       
+       hideKeyboardWhenTappedAround()
     }
 
     override func didReceiveMemoryWarning() {
