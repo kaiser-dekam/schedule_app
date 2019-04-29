@@ -27,11 +27,14 @@ var userEmail: String?
 var tableData: [myData] = []
 var ref: DatabaseReference!
 var searchEntry: String?
-
+var detailsIndex = 0
+var saveTableData: [myData] = []
+var indexForLiveClock: Int = 0
 
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var myTableView: UITableView!
     @IBOutlet weak var eventSearchBar: UISearchBar!
+    @IBOutlet weak var headerText: UIButton!
     
     
     
@@ -85,16 +88,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             }
             
                 // Check if event is currently occuring. If it is set the background color to green.
-                if (Date() >= tableData[indexPath.row].rawStartTime && Date() <= tableData[indexPath.row].rawStopTime) {
-                    cell.backgroundColor = UIColor.green
+                if (Date() > tableData[indexPath.row].rawStartTime && Date() <= tableData[indexPath.row].rawStopTime) {
+                    cell.backgroundColor = UIColor.init(red: 110/255, green: 140/255, blue: 132/255, alpha: 1.0)
                     
                 }
                 //Needs to be massaged - too many events are being highlighted. COlors also need to be adjusted with RGB
                 if (tableData[indexPath.row].rawStartTime >= Date() - 6000 && (Date() < tableData[indexPath.row].rawStartTime)) {
-                    cell.backgroundColor = UIColor.yellow
+                    cell.backgroundColor = UIColor.init(red: 237/255, green: 178/255, blue: 64/255, alpha: 1.0)
                 }
-           
-           
+            
+            
             
                 return cell
             
@@ -114,7 +117,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
       
     }
    
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        detailsIndex = indexPath.row
+        saveTableData = tableData
+        print(tableData)
+        
+        performSegue(withIdentifier: "eventDetails", sender: self)
+    }
     
 //   Ability to delete
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
@@ -169,6 +178,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableData.removeAll()
         ref.child("Event_Data").child(currentProject_id).child("Events").observeSingleEvent(of: .value) { (snapshot) in
             // Get User Value
+            
             if snapshot.childrenCount > 0 {
                 tableData.removeAll()
                 
@@ -210,43 +220,58 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
                     
                     let event = myData.init(firstRowLabel: title as! String, secondRowLabel: location as! String, startTimeLabel: startTimeString, rawStartTime: convertedStartTimeDate, stopTimeLabel: stopTimeString, rawStopTime: convertedStopTimeDate, isSpecialStatus: special as! Bool, uniqueID: uniqueEventID as! String)
                     tableData.append(event)
-                    self.myTableView.reloadData()
-//                    print(tableData)
+                    print("Reloading TableView")
+                    self.reloadTableViewFunction()
                 }
-                
             }
-            
         }
-     
-        
     }
     
     
     @IBAction func refreshData(_ sender: Any) {
         downloadFirebaseData()
-        myTableView.reloadData()
+        reloadTableViewFunction()
     }
     
   
     
     func scheduledTimerWithTimeInterval(){
         // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
-        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.sayHello), userInfo: nil, repeats: true)
+        var _ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(ViewController.timerInterval), userInfo: nil, repeats: true)
+        
     }
-    @objc func sayHello()
+    @objc func timerInterval()
     {
-        checkEventStatus()
+       reloadTableViewFunction()
+        indexForLiveClock = indexForLiveClock + 1
+       showLiveClock()
+    
     }
     
+
     
-    
-    
-    
-    
-    func checkEventStatus() {
+    func reloadTableViewFunction() {
+        if myTableView != nil {
         myTableView.reloadData()
+    } else {
+        print("myTableView is nil")
+        }
     }
     
+    func showLiveClock() {
+        if indexForLiveClock > 5 {
+            // ---------------- TODO: Time Formatter to display clock time instead of text below
+            
+            let clockFormatter = DateFormatter()
+            clockFormatter.timeStyle = .short
+            clockFormatter.dateStyle = .none
+//            stopTimeInt = convertTimeToInt(time: stopTimePicker.date)
+//            timeInputStop.text = stopTimeFormatter.string(from: stopTimePicker.date)
+            var clockTime = clockFormatter.string(from: Date())
+            headerText.setTitle("\(clockTime)", for: .normal)
+
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -254,11 +279,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         ref = Database.database().reference()
         downloadFirebaseData()
         scheduledTimerWithTimeInterval()
-    }
-
-    @IBAction func refreshTableView(_ sender: Any) {
-        myTableView.reloadData()
-        print("TableView Reloaded")
+        showLiveClock()
     }
     
     
@@ -266,22 +287,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-   
-    
-    
-    
-    @IBAction func addPermissionsToUser(_ sender: Any) {
-        // TODO: Add pupup modal that lets you adds projects to users emails to their permissions
-        //Also, let them choose if that person should have owner or guess access
-        //https://www.youtube.com/watch?v=CXvOS6hYADc
-    }
-    
-    
-    
-    
 }
+
+
 
 extension UIViewController {
     func hideKeyboardWhenTappedAround() {
@@ -289,7 +297,6 @@ extension UIViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
-    
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
