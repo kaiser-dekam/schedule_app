@@ -335,8 +335,9 @@ static dispatch_once_t sProxyAppDelegateOnceToken;
   NSValue *continueUserActivityIMPPointer = [NSValue valueWithPointer:continueUserActivityIMP];
 
   // For application:openURL:sourceApplication:annotation:
-  SEL openURLSourceApplicationAnnotationSEL = @selector(application:
-                                                            openURL:sourceApplication:annotation:);
+
+  SEL openURLSourceApplicationAnnotationSEL =
+      @selector(application:openURL:sourceApplication:annotation:);
   [GULAppDelegateSwizzler addInstanceMethodWithSelector:openURLSourceApplicationAnnotationSEL
                                               fromClass:[GULAppDelegateSwizzler class]
                                                 toClass:appDelegateSubClass];
@@ -348,8 +349,9 @@ static dispatch_once_t sProxyAppDelegateOnceToken;
       [NSValue valueWithPointer:openURLSourceApplicationAnnotationIMP];
 
   // For application:handleEventsForBackgroundURLSession:completionHandler:
-  SEL handleEventsForBackgroundURLSessionSEL = @selector(application:
-                                 handleEventsForBackgroundURLSession:completionHandler:);
+
+  SEL handleEventsForBackgroundURLSessionSEL =
+      @selector(application:handleEventsForBackgroundURLSession:completionHandler:);
   [GULAppDelegateSwizzler addInstanceMethodWithSelector:handleEventsForBackgroundURLSessionSEL
                                               fromClass:[GULAppDelegateSwizzler class]
                                                 toClass:appDelegateSubClass];
@@ -602,8 +604,9 @@ static dispatch_once_t sProxyAppDelegateOnceToken;
       [handleBackgroundSessionPointer pointerValue];
 
   // Notify interceptors.
-  SEL methodSelector = @selector(application:
-         handleEventsForBackgroundURLSession:completionHandler:);
+
+  SEL methodSelector =
+      @selector(application:handleEventsForBackgroundURLSession:completionHandler:);
   [GULAppDelegateSwizzler
       notifyInterceptorsWithMethodSelector:methodSelector
                                   callback:^(id<UIApplicationDelegate> interceptor) {

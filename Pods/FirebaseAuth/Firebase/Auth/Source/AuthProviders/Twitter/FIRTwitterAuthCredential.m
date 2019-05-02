@@ -48,6 +48,7 @@
   request.providerOAuthTokenSecret = _secret;
 }
 
+
 #pragma mark - NSSecureCoding
 
 + (BOOL)supportsSecureCoding {
@@ -65,5 +66,6 @@
   [aCoder encodeObject:self.token forKey:@"token"];
   [aCoder encodeObject:self.secret forKey:@"secret"];
 }
+
 
 @end

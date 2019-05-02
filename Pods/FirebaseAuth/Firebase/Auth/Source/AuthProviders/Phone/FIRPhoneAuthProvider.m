@@ -45,7 +45,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** @typedef FIRReCAPTCHAURLCallBack
     @brief The callback invoked at the end of the flow to fetch a reCAPTCHA URL.
     @param reCAPTCHAURL The reCAPTCHA URL.
-    @param error The error that occurred while fetching the reCAPTCHAURL, if any.
+
+    @param error The error that occured while fetching the reCAPTCHAURL, if any.
+
  */
 typedef void (^FIRReCAPTCHAURLCallBack)(NSURL *_Nullable reCAPTCHAURL, NSError *_Nullable error);
 
@@ -53,7 +55,9 @@ typedef void (^FIRReCAPTCHAURLCallBack)(NSURL *_Nullable reCAPTCHAURL, NSError *
     @brief The callback invoked at the end of a client verification flow.
     @param appCredential credential that proves the identity of the app during a phone
         authentication flow.
-    @param error The error that occurred while verifying the app, if any.
+
+    @param error The error that occured while verifying the app, if any.
+
  */
 typedef void (^FIRVerifyClientCallback)(FIRAuthAppCredential *_Nullable appCredential,
                                         NSError *_Nullable error);
@@ -61,7 +65,9 @@ typedef void (^FIRVerifyClientCallback)(FIRAuthAppCredential *_Nullable appCrede
 /** @typedef FIRFetchAuthDomainCallback
     @brief The callback invoked at the end of the flow to fetch the Auth domain.
     @param authDomain The Auth domain.
-    @param error The error that occurred while fetching the auth domain, if any.
+
+    @param error The error that occured while fetching the auth domain, if any.
+
  */
 typedef void (^FIRFetchAuthDomainCallback)(NSString *_Nullable authDomain,
                                            NSError *_Nullable error);

@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import FirebaseAuth
+import Firebase
+
 var removeOldEvents: Bool = true
 
 class SettingsViewController: UIViewController {
@@ -23,12 +26,26 @@ class SettingsViewController: UIViewController {
     
         }
     
+    @IBAction func deleteData(_ sender: Any) {
+        tableData.removeAll()
+        ref!.child(userID!).removeValue()
+    }
     
-        
+    @IBAction func signOut(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            performSegue(withIdentifier: "logout", sender: sender)
+            }
+        catch {
+            print(error)
+        }
+    }
+    
     
   
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
 
         // Do any additional setup after loading the view.
         if removeOldEvents == true {

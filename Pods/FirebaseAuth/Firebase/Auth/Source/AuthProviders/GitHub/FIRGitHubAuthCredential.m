@@ -46,6 +46,7 @@
   request.providerAccessToken = _token;
 }
 
+
 #pragma mark - NSSecureCoding
 
 + (BOOL)supportsSecureCoding {
@@ -61,5 +62,6 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [aCoder encodeObject:self.token forKey:@"token"];
 }
+
 
 @end

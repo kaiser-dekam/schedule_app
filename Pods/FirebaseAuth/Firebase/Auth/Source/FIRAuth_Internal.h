@@ -18,7 +18,9 @@
 
 #import "FIRAuth.h"
 
+
 #import <FirebaseAuthInterop/FIRAuthInterop.h>
+
 
 @class FIRAuthRequestConfiguration;
 
@@ -31,7 +33,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FIRAuth () <FIRAuthInterop>
+
+@interface FIRAuth ()
+
 
 /** @property requestConfiguration
     @brief The configuration object comprising of paramters needed to make a request to Firebase

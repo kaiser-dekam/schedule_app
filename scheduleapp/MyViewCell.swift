@@ -17,14 +17,7 @@ class MyViewCell: UITableViewCell {
     
     
     @IBOutlet weak var cellViewLayer: UIView!
-    
-    
-    
-
-    
-    
-    
-    
+  
     
     override func awakeFromNib() {
         super.awakeFromNib()

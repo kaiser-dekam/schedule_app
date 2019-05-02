@@ -57,6 +57,7 @@
       @"Attempt to call prepareVerifyAssertionRequest: on a FIREmailPasswordAuthCredential."];
 }
 
+
 #pragma mark - NSSecureCoding
 
 + (BOOL)supportsSecureCoding {
@@ -82,5 +83,6 @@
   [aCoder encodeObject:self.password forKey:@"password"];
   [aCoder encodeObject:self.link forKey:@"link"];
 }
+
 
 @end

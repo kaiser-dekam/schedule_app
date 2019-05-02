@@ -59,6 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
   return self;
 }
 
+
 #pragma mark - NSSecureCoding
 
 + (BOOL)supportsSecureCoding {
@@ -86,6 +87,7 @@ NS_ASSUME_NONNULL_BEGIN
   [aCoder encodeObject:self.temporaryProof forKey:@"temporaryProof"];
   [aCoder encodeObject:self.phoneNumber forKey:@"phoneNumber"];
 }
+
 
 @end
 

@@ -8,7 +8,10 @@ target 'scheduleapp' do
   # Pods for scheduleapp
 
 pod 'Firebase/Core'
+pod 'Firebase/Database'
 pod 'Firebase/Auth'
+
+
   target 'scheduleappTests' do
     inherit! :search_paths
     # Pods for testing

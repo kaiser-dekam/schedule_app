@@ -39,8 +39,6 @@ NSString *const FIRGitHubAuthProviderID = @"github.com";
 // Declared 'extern' in FIRPhoneAuthProvider.h
 NSString *const FIRPhoneAuthProviderID = @"phone";
 
-// Declared 'extern' in FIRGameCenterAuthProvider.h
-NSString *const FIRGameCenterAuthProviderID = @"gc.apple.com";
 
 #pragma mark - sign-in methods constants
 
@@ -65,5 +63,3 @@ NSString *const FIRGitHubAuthSignInMethod = @"github.com";
 // Declared 'extern' in FIRPhoneAuthProvider.h
 NSString *const FIRPhoneAuthSignInMethod = @"phone";
 
-// Declared 'extern' in FIRGameCenterAuthProvider.h
-NSString *const FIRGameCenterAuthSignInMethod = @"gc.apple.com";

@@ -44,6 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
   request.providerAccessToken = _accessToken;
 }
 
+
 #pragma mark - NSSecureCoding
 
 + (BOOL)supportsSecureCoding {
@@ -61,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
   [aCoder encodeObject:self.IDToken forKey:@"IDToken"];
   [aCoder encodeObject:self.accessToken forKey:@"accessToken"];
 }
+
 
 NS_ASSUME_NONNULL_END
 

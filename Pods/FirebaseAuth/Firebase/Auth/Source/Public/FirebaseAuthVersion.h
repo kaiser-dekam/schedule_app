@@ -24,4 +24,5 @@ extern const double FirebaseAuthVersionNum;
 /**
     Version string for FirebaseAuth.
  */
-extern const char *const FirebaseAuthVersionStr;
+
+extern const unsigned char *const FirebaseAuthVersionStr;

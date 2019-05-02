@@ -1,3 +1,4 @@
+
 # v5.2.0
 - Add support of Game Center sign in (#2127).
 
@@ -10,10 +11,11 @@
 # v5.0.4
 - Fix analyzer issues (#1740).
 
-# v5.0.3
-- Add `FIRAuthErrorCodeMalformedJWT`, which is raised on JWT token parsing.
+
+# v5.1.0
+- Adds `FIRAuthErrorCodeMalformedJWT`, which is raised on JWT token parsing
   failures during auth operations (#1436).
-- Migrate to use FirebaseAuthInterop interfaces to access FirebaseAuth (#1501).
+
 
 # v5.0.2
 - Fix an issue where JWT date timestamps weren't parsed correctly. (#1319)
